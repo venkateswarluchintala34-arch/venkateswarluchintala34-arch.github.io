@@ -278,9 +278,15 @@
   (function(){
     const fx=document.querySelector('.hero-bg-fx');if(!fx)return;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const flows=fx.querySelectorAll('.fx-flow');
     let y=0,raf=false;
-    addEventListener('scroll',()=>{y=scrollY;if(!raf){raf=true;requestAnimationFrame(()=>{
-      fx.style.transform='translateY('+(y*0.16).toFixed(1)+'px)';raf=false;});}},{passive:true});
+    const upd=()=>{
+      fx.style.transform='translateY('+(y*0.18).toFixed(1)+'px)';   // параллакс
+      const off=(-y*0.7).toFixed(1);                                 // поток по линиям — от скролла
+      flows.forEach(f=>f.style.strokeDashoffset=off);
+      raf=false;
+    };
+    addEventListener('scroll',()=>{y=scrollY;if(!raf){raf=true;requestAnimationFrame(upd);}},{passive:true});
   })();
   // мобильное меню
   document.querySelector('.burger')?.addEventListener('click',()=>{
