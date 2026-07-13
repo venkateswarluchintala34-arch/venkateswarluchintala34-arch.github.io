@@ -1,0 +1,17 @@
+# Секреты — НИКОГДА не коммитить
+api/config.php
+*.env
+.env
+*.session
+.credentials.json
+
+# Системное
+.DS_Store
+Thumbs.db
+
+# Временное
+*.log
+scratchpad/
+
+# Локальные тест-сборки артефакта
+_artifact_*.html
