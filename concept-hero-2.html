@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Концепт hero 2 — Eners Group</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="stylesheet" href="/styles.css">
+<style>
+.infra{position:relative;width:100%;max-width:640px;margin:0 auto}
+.infra svg{width:100%;height:auto;display:block;overflow:visible}
+/* трубы */
+.pipe{fill:none;stroke-linecap:round;stroke-width:12}
+.pipe-hl{fill:none;stroke-linecap:round;stroke-width:3;opacity:.85}
+.p-heat{stroke:#e0631b}   .p-heat-hl{stroke:#f7b184}
+.p-air{stroke:#12a3b4}    .p-air-hl{stroke:#7bd7e0}
+.p-water{stroke:#2f9be0}  .p-water-hl{stroke:#9ecdf3}
+/* провод (электроэнергия) */
+.wire{fill:none;stroke:#1763e6;stroke-width:3.2;stroke-linecap:round}
+.wire-tick{stroke:#1763e6;stroke-width:2.4;stroke-linecap:round}
+/* карточки-источники */
+.src{fill:#fff;stroke:#e4ebf3;stroke-width:1.5;filter:url(#iShadow)}
+.src-ic{fill:#e7f0ff}
+.ic{fill:none;stroke:#1763e6;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.icf{fill:#1763e6;stroke:none}
+.src-t{fill:#0d2136;font-family:'Manrope',system-ui,sans-serif;font-weight:600;font-size:15px}
+/* производство */
+.plant{fill:url(#iNavy);filter:url(#iShadow)}
+.plant-ic{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.plant-t{fill:#fff;font-family:'Manrope',system-ui,sans-serif;font-weight:700;font-size:17px;text-anchor:middle}
+.plant-s{fill:#9fc0f2;font-family:'Manrope',system-ui,sans-serif;font-weight:600;font-size:11px;text-anchor:middle}
+/* подписи сред */
+.mtag{font-family:'Manrope',system-ui,sans-serif;font-weight:700;font-size:11px}
+.mtag-bg{fill:#fff;stroke:#eef2f7;stroke-width:1}
+/* пульсы */
+.fl{r:4} .fl-e{fill:#1763e6} .fl-h{fill:#e0631b} .fl-a{fill:#12a3b4} .fl-w{fill:#2f9be0}
+/* АСКУЭ overlay */
+.askue{stroke:#8aa0bd;stroke-width:2;stroke-dasharray:2 7;fill:none}
+.askue-t{fill:#64748b;font-family:'Manrope',system-ui,sans-serif;font-weight:600;font-size:11px}
+@media(prefers-reduced-motion:reduce){.fl{display:none}}
+.concept-note{max-width:1120px;margin:0 auto;padding:14px 24px 40px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/img/logo-navy.png" alt="ЭНЕРС"><span class="logo-tag">Энергетика и<br>инженерные системы</span></a>
+    <nav class="nav-links">
+      <a href="/uslugi/">Услуги</a><a href="/energoservis.html">Энергосервис</a><a href="/proekty/">Проекты</a><a href="/o-kompanii.html">О компании</a><a href="/kontakty.html">Контакты</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-mail" href="mailto:info@enersgroup.ru">info@enersgroup.ru</a>
+      <a class="btn btn-primary" href="/kontakty.html">Оставить заявку</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg-fx" aria-hidden="true"><span class="glow g1"></span><span class="glow g2"></span><span class="glow g3"></span><span class="hero-sheen"></span></div>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">Энергетическая инфраструктура · инженерные системы</p>
+      <h1>Энергетика и <em>инженерные системы</em> вашего производства</h1>
+      <p class="lead">Проектируем, поставляем и строим энергетическую инфраструктуру предприятия под
+        ключ — энергоцентры, котельные, тепловые пункты, компрессорные и инженерные системы.
+        По модели энергосервиса — с оплатой из вашей экономии.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="/energoservis.html">Рассчитать экономию →</a>
+        <a class="btn btn-ghost btn-lg" href="/proekty/">Наши проекты</a>
+      </div>
+      <div class="hero-trust">
+        <div class="t"><b>100+ МВт</b><span>реализованной мощности</span></div>
+        <div class="t"><b>30+</b><span>объектов под ключ</span></div>
+        <div class="t"><b>10+ лет</b><span>опыт команды</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="infra">
+        <svg viewBox="0 0 680 540" role="img" aria-label="Инфраструктура: источники энергии и ресурсов питают производство по проводам и трубам">
+          <defs>
+            <linearGradient id="iNavy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173759"/><stop offset="1" stop-color="#0d2136"/></linearGradient>
+            <filter id="iShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#12315a" flood-opacity="0.14"/></filter>
+          </defs>
+
+          <!-- ===== ТРУБЫ и ПРОВОД (снизу) ===== -->
+          <!-- электроэнергия: провод -->
+          <path class="wire" d="M212 96 C 330 96, 360 210, 470 210"/>
+          <!-- пар/тепло -->
+          <path class="pipe p-heat" d="M212 216 C 350 216, 360 258, 470 258"/>
+          <path class="pipe-hl p-heat-hl" d="M212 216 C 350 216, 360 258, 470 258"/>
+          <!-- сжатый воздух -->
+          <path class="pipe p-air" d="M212 336 C 350 336, 360 306, 470 306"/>
+          <path class="pipe-hl p-air-hl" d="M212 336 C 350 336, 360 306, 470 306"/>
+          <!-- вода -->
+          <path class="pipe p-water" d="M212 456 C 350 456, 360 354, 470 354"/>
+          <path class="pipe-hl p-water-hl" d="M212 456 C 350 456, 360 354, 470 354"/>
+
+          <!-- изоляторы на проводе -->
+          <line class="wire-tick" x1="300" y1="120" x2="300" y2="134"/>
+          <line class="wire-tick" x1="360" y1="150" x2="360" y2="164"/>
+
+          <!-- пульсы -->
+          <circle class="fl fl-e"><animateMotion dur="3.4s" repeatCount="indefinite" path="M212 96 C 330 96, 360 210, 470 210"/></circle>
+          <circle class="fl fl-e"><animateMotion dur="3.4s" begin="1.7s" repeatCount="indefinite" path="M212 96 C 330 96, 360 210, 470 210"/></circle>
+          <circle class="fl fl-h"><animateMotion dur="4.6s" begin="0.4s" repeatCount="indefinite" path="M212 216 C 350 216, 360 258, 470 258"/></circle>
+          <circle class="fl fl-h"><animateMotion dur="4.6s" begin="2.7s" repeatCount="indefinite" path="M212 216 C 350 216, 360 258, 470 258"/></circle>
+          <circle class="fl fl-a"><animateMotion dur="4.2s" begin="1s" repeatCount="indefinite" path="M212 336 C 350 336, 360 306, 470 306"/></circle>
+          <circle class="fl fl-a"><animateMotion dur="4.2s" begin="3s" repeatCount="indefinite" path="M212 336 C 350 336, 360 306, 470 306"/></circle>
+          <circle class="fl fl-w"><animateMotion dur="4.8s" begin="0.7s" repeatCount="indefinite" path="M212 456 C 350 456, 360 354, 470 354"/></circle>
+          <circle class="fl fl-w"><animateMotion dur="4.8s" begin="3.1s" repeatCount="indefinite" path="M212 456 C 350 456, 360 354, 470 354"/></circle>
+
+          <!-- ===== подписи сред ===== -->
+          <g transform="translate(250,74)"><rect class="mtag-bg" x="0" y="0" width="118" height="22" rx="11"/><text class="mtag" x="12" y="15" fill="#1763e6">электроэнергия</text></g>
+          <g transform="translate(258,196)"><rect class="mtag-bg" x="0" y="0" width="92" height="22" rx="11"/><text class="mtag" x="12" y="15" fill="#e0631b">пар · тепло</text></g>
+          <g transform="translate(256,316)"><rect class="mtag-bg" x="0" y="0" width="110" height="22" rx="11"/><text class="mtag" x="12" y="15" fill="#0f8f9e">сжатый воздух</text></g>
+          <g transform="translate(262,436)"><rect class="mtag-bg" x="0" y="0" width="58" height="22" rx="11"/><text class="mtag" x="12" y="15" fill="#2f9be0">вода</text></g>
+
+          <!-- ===== ИСТОЧНИКИ (слева) ===== -->
+          <g transform="translate(16,68)">
+            <rect class="src" x="0" y="0" width="196" height="56" rx="14"/>
+            <circle class="src-ic" cx="32" cy="28" r="17"/>
+            <polygon class="icf" transform="translate(23,19) scale(0.78)" points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            <text class="src-t" x="60" y="33">Энергоцентр</text>
+          </g>
+          <g transform="translate(16,188)">
+            <rect class="src" x="0" y="0" width="196" height="56" rx="14"/>
+            <circle class="src-ic" cx="32" cy="28" r="17"/>
+            <path class="ic" transform="translate(23,19) scale(0.78)" d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/>
+            <text class="src-t" x="60" y="33">Котельная</text>
+          </g>
+          <g transform="translate(16,308)">
+            <rect class="src" x="0" y="0" width="196" height="56" rx="14"/>
+            <circle class="src-ic" cx="32" cy="28" r="17"/>
+            <g class="ic" transform="translate(23,19) scale(0.78)"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+            <text class="src-t" x="60" y="33">Компрессорная</text>
+          </g>
+          <g transform="translate(16,428)">
+            <rect class="src" x="0" y="0" width="196" height="56" rx="14"/>
+            <circle class="src-ic" cx="32" cy="28" r="17"/>
+            <path class="ic" transform="translate(23,19) scale(0.78)" d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>
+            <text class="src-t" x="60" y="33">Насосная</text>
+          </g>
+
+          <!-- ===== ПРОИЗВОДСТВО (справа) ===== -->
+          <!-- фланцы входа -->
+          <rect x="464" y="203" width="12" height="14" rx="2" fill="#1763e6"/>
+          <rect x="464" y="251" width="12" height="14" rx="2" fill="#e0631b"/>
+          <rect x="464" y="299" width="12" height="14" rx="2" fill="#12a3b4"/>
+          <rect x="464" y="347" width="12" height="14" rx="2" fill="#2f9be0"/>
+          <g transform="translate(476,150)">
+            <rect class="plant" x="0" y="0" width="188" height="240" rx="22"/>
+            <g class="plant-ic" transform="translate(64,44) scale(2.6)"><path d="M3 21h18"/><path d="M4 21V11l5-3.2V11l5-3.2V21"/><path d="M13 21v-5h4v5"/></g>
+            <text class="plant-t" x="94" y="150">Производство</text>
+            <text class="plant-s" x="94" y="172">потребитель энергии</text>
+            <text class="plant-s" x="94" y="188">и ресурсов</text>
+          </g>
+
+          <!-- ===== АСКУЭ / диспетчеризация (контроль) ===== -->
+          <path class="askue" d="M120 34 H520 V150"/>
+          <g transform="translate(120,22)"><text class="askue-t" x="0" y="0">учёт и диспетчеризация · АСКУЭ</text></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+<p class="concept-note">Концепт-2 (инженерный взгляд): слева — <b>источники энергии и ресурсов</b> (объекты, которые строит Энерс), справа — <b>производство-потребитель</b>. Между ними — реальные связи: <b>провод</b> (электроэнергия) и <b>трубы</b> по средам — пар/тепло, сжатый воздух, вода; по ним бегут потоки. Сверху пунктиром — контур учёта и диспетчеризации (АСКУЭ) над всей инфраструктурой. Число сред/источников, толщину труб и скорость потоков можно менять.</p>
+</body>
+</html>
