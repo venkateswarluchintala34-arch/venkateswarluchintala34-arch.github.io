@@ -378,3 +378,19 @@ footer .logo span{color:#8ea4be}
 .hs-fl{r:3.6}.hf-e{fill:#1763e6}.hf-h{fill:#e0631b}.hf-a{fill:#12a3b4}.hf-w{fill:#2f9be0}
 @media(prefers-reduced-motion:reduce){.hs-fl{display:none}}
 @media(max-width:980px){.hsys{margin:0 auto}}
+
+/* ---- оборудование: карточки производителей + параметры ---- */
+.equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+.equip-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+.equip-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.equip-name{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.01em}
+.equip-badge{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--accent-700);background:var(--accent-soft);border-radius:6px;padding:3px 9px}
+.equip-desc{color:var(--text);font-size:15px;line-height:1.6;margin:0 0 16px}
+.equip-metric{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:14px}
+.equip-metric span{color:var(--muted);font-size:14px}
+.equip-metric b{color:var(--accent-700);font-size:18px;font-weight:800;white-space:nowrap}
+.equip-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ef{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.ef b{color:var(--navy);font-size:17px;font-weight:800}
+.ef span{color:var(--muted);font-size:13px;font-weight:600;line-height:1.35}
+@media(max-width:760px){.equip-grid{grid-template-columns:1fr}.equip-facts{grid-template-columns:1fr 1fr}}
