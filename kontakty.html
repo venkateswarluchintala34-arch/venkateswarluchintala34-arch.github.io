@@ -63,6 +63,7 @@
   <div><label for="lf-contact">Телефон или e-mail</label><input id="lf-contact" name="contact" type="text" autocomplete="tel" placeholder="Для связи" required></div>
   <div><label for="lf-task">Задача</label><textarea id="lf-task" name="task" rows="4" placeholder="Кратко об объекте, нагрузках, сроках"></textarea></div>
   <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+  <label class="consent"><input type="checkbox" name="consent" required> Я согласен(на) на обработку персональных данных согласно <a href="/politika.html" target="_blank" rel="noopener">Политике конфиденциальности</a></label>
   <button class="btn btn-primary btn-lg" type="submit">Отправить заявку →</button>
   <p class="form-note" role="status" aria-live="polite">Заявка уходит напрямую в Telegram — ответим в течение рабочего дня.</p>
 </form>
@@ -99,7 +100,7 @@
     </div>
     <div class="foot-bottom">
       <div>© 2026 ООО «ЭНЕРСГРУПП» · ОГРН 1225200005722 · ИНН 5256201227</div>
-      <div>Распределённая энергетика · ГПУ · Котельные · Энергосервис</div>
+      <div><a href="/politika.html">Политика конфиденциальности</a> · Распределённая энергетика · ГПУ · Котельные</div>
     </div>
   </div>
 </footer>
@@ -117,6 +118,7 @@
     const nm=document.getElementById('lf-name'),ct=document.getElementById('lf-contact');
     form.addEventListener('submit',async(e)=>{e.preventDefault();
       if(!nm.value.trim()||!ct.value.trim()){note.textContent='Заполните имя и контакт для связи.';return;}
+      const cons=form.querySelector('[name=consent]');if(cons&&!cons.checked){note.textContent='Подтвердите согласие на обработку персональных данных.';return;}
       const o=btn.textContent;btn.disabled=true;btn.textContent='Отправляем…';note.textContent='';
       try{const r=await fetch('/api/send.php',{method:'POST',body:new FormData(form)});
         const d=await r.json().catch(()=>({}));

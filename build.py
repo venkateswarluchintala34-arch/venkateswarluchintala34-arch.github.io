@@ -81,7 +81,7 @@ FOOTER = '''
     </div>
     <div class="foot-bottom">
       <div>© 2026 ООО «ЭНЕРСГРУПП» · ОГРН 1225200005722 · ИНН 5256201227</div>
-      <div>Распределённая энергетика · ГПУ · Котельные · Энергосервис</div>
+      <div><a href="/politika.html">Политика конфиденциальности</a> · Распределённая энергетика · ГПУ · Котельные</div>
     </div>
   </div>
 </footer>'''
@@ -101,6 +101,7 @@ SCRIPT = '''
     const nm=document.getElementById('lf-name'),ct=document.getElementById('lf-contact');
     form.addEventListener('submit',async(e)=>{e.preventDefault();
       if(!nm.value.trim()||!ct.value.trim()){note.textContent='Заполните имя и контакт для связи.';return;}
+      const cons=form.querySelector('[name=consent]');if(cons&&!cons.checked){note.textContent='Подтвердите согласие на обработку персональных данных.';return;}
       const o=btn.textContent;btn.disabled=true;btn.textContent='Отправляем…';note.textContent='';
       try{const r=await fetch('/api/send.php',{method:'POST',body:new FormData(form)});
         const d=await r.json().catch(()=>({}));
@@ -118,6 +119,7 @@ LEAD_FORM = '''<form id="lead-form" class="lead" novalidate>
   <div><label for="lf-contact">Телефон или e-mail</label><input id="lf-contact" name="contact" type="text" autocomplete="tel" placeholder="Для связи" required></div>
   <div><label for="lf-task">Задача</label><textarea id="lf-task" name="task" rows="4" placeholder="Кратко об объекте, нагрузках, сроках"></textarea></div>
   <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+  <label class="consent"><input type="checkbox" name="consent" required> Я согласен(на) на обработку персональных данных согласно <a href="/politika.html" target="_blank" rel="noopener">Политике конфиденциальности</a></label>
   <button class="btn btn-primary btn-lg" type="submit">Отправить заявку →</button>
   <p class="form-note" role="status" aria-live="polite">Заявка уходит напрямую в Telegram — ответим в течение рабочего дня.</p>
 </form>'''
@@ -325,6 +327,36 @@ PAGES["o-kompanii.html"]=dict(title="О компании — Eners Group",
 <section class="section soft"><div class="wrap"><div class="cta reveal">
   <h2>Обсудим ваш энергопроект</h2><p>Расскажите о задаче — предложим решение и рассчитаем экономику.</p>
   <a class="btn btn-primary btn-lg" href="/kontakty.html">Связаться →</a></div></div></section>''')
+
+
+PAGES["politika.html"]=dict(title="Политика конфиденциальности — Eners Group",
+  desc="Политика ООО «ЭНЕРСГРУПП» в отношении обработки персональных данных в соответствии с 152-ФЗ.",
+  active="", body=f'''
+{CRUMB([("Главная","/"),("Политика конфиденциальности",None)])}
+<section class="section page-head"><div class="wrap">
+  <p class="eyebrow">Правовая информация</p>
+  <h1 class="page-title" style="font-size:clamp(26px,3.6vw,40px)">Политика в отношении обработки персональных данных</h1>
+</div></section>
+<section class="section" style="padding-top:0"><div class="wrap legal">
+  <h3>1. Общие положения</h3>
+  <p>Настоящая Политика определяет порядок обработки и защиты персональных данных физических лиц (далее — Пользователи) Оператором — <b>ООО «ЭНЕРСГРУПП»</b> (ОГРН 1225200005722, ИНН 5256201227, адрес: 603016, г. Нижний Новгород, ул. Героя Юрия Смирнова, д. 2) и разработана в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+  <p>Используя сайт enersgroup.ru и отправляя данные через формы обратной связи, Пользователь выражает согласие с условиями настоящей Политики.</p>
+  <h3>2. Какие данные обрабатываются</h3>
+  <p>Оператор обрабатывает персональные данные, которые Пользователь предоставляет добровольно при заполнении форм на сайте: имя, контактные данные (телефон и/или адрес электронной почты), а также текст обращения. Дополнительно могут автоматически собираться технические данные (IP-адрес, cookie-файлы, сведения о браузере) в целях функционирования сайта.</p>
+  <h3>3. Цели обработки</h3>
+  <p>Обработка осуществляется в целях обработки заявок и обращений Пользователя, предоставления обратной связи, подготовки коммерческих предложений и информирования о ходе рассмотрения обращения.</p>
+  <h3>4. Правовые основания</h3>
+  <p>Правовым основанием обработки является согласие Пользователя на обработку персональных данных, выражаемое при отправке формы, а также положения 152-ФЗ и иных нормативных актов РФ.</p>
+  <h3>5. Порядок и сроки обработки</h3>
+  <p>Персональные данные обрабатываются с использованием средств автоматизации и без таковых. Оператор не передаёт данные третьим лицам, за исключением случаев, предусмотренных законодательством РФ. Данные хранятся в течение срока, необходимого для достижения целей обработки, либо до отзыва согласия.</p>
+  <h3>6. Права пользователя</h3>
+  <p>Пользователь вправе получать сведения об обработке своих данных, требовать их уточнения, блокирования или удаления, а также отозвать согласие на обработку, направив обращение на e-mail <a href="mailto:info@enersgroup.ru">info@enersgroup.ru</a>.</p>
+  <h3>7. Файлы cookie</h3>
+  <p>Сайт может использовать cookie-файлы для корректной работы и анализа посещаемости. Пользователь может отключить cookie в настройках браузера; это может повлиять на работу отдельных функций сайта.</p>
+  <h3>8. Контакты</h3>
+  <p>По вопросам обработки персональных данных: ООО «ЭНЕРСГРУПП», e-mail <a href="mailto:info@enersgroup.ru">info@enersgroup.ru</a>.</p>
+  <p class="legal-note">Актуальная редакция Политики размещена на данной странице.</p>
+</div></section>''')
 
 
 def build():
