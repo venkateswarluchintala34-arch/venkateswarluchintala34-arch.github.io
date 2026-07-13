@@ -15,10 +15,10 @@ def HEAD(title, desc):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
-<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png?v=3">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png?v=3">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=3">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>'''
