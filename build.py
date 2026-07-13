@@ -118,12 +118,12 @@ SCRIPT = '''
   (function(){
     const load=document.getElementById('c-load');if(!load)return;
     const ids=['c-load','c-hours','c-tariff','c-gas'].map(i=>document.getElementById(i));
-    const eff=0.42,lhv=9.3,om=2.5;
+    const sgc=0.29,om=2.5;  // удельный расход газа ~0,29 м³/кВт·ч (≈290 м³/ч на МВт); эксплуатация ₽/кВт·ч
     const ru=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:0});
     const one=n=>n.toFixed(1).replace('.',',');
     function calc(){
       const [L,H,T,G]=ids.map(e=>parseFloat(e.value)||0);
-      const cost=G/(eff*lhv)+om;
+      const cost=sgc*G+om;
       const delta=Math.max(T-cost,0);
       const year=L*H*delta;
       document.getElementById('o-cost').textContent=one(cost)+' ₽/кВт·ч';
@@ -407,7 +407,7 @@ PAGES["energoservis.html"]=dict(title="Энергосервис (ЭСК) — Ene
       <div class="calc-row"><span>Себестоимость собственной э/э</span><b id="o-cost">—</b></div>
       <div class="calc-row"><span>Экономия на каждом кВт·ч</span><b id="o-delta">—</b></div>
       <div class="calc-row big"><span>Экономия в год</span><b id="o-year">—</b></div>
-      <p class="calc-note">Ориентировочно, по типовым параметрам ГПУ (электрический КПД ~42 %, теплотворность газа ~9,3 кВт·ч/м³, эксплуатация ~2,5 ₽/кВт·ч). Без учёта дополнительного эффекта от утилизации тепла (когенерация) — он увеличивает экономию.</p>
+      <p class="calc-note">Ориентировочно, по типовым параметрам ГПУ (удельный расход газа ~0,29 м³/кВт·ч ≈ 290 м³/ч на МВт, эксплуатация ~2,5 ₽/кВт·ч). Без учёта дополнительного эффекта от утилизации тепла (когенерация) — он увеличивает экономию. Точный расчёт — после аудита площадки.</p>
       <a class="btn btn-primary" href="/kontakty.html">Точный расчёт по вашему объекту →</a>
     </div>
   </div>
