@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Концепт hero — Eners Group</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="stylesheet" href="/styles.css">
+<style>
+/* --- анимированная схема «энергетический контур предприятия» --- */
+.ecosys{position:relative;width:100%;max-width:600px;margin:0 auto}
+.ecosys svg{width:100%;height:auto;display:block;overflow:visible}
+.ec-conn{fill:none;stroke:#d3e0f0;stroke-width:2}
+.ec-card{fill:#fff;stroke:#e4ebf3;stroke-width:1.5;filter:url(#ecShadow)}
+.ec-cardic{fill:#e7f0ff}
+.ec-ic{fill:none;stroke:#1763e6;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ec-icf{fill:#1763e6;stroke:none}
+.ec-label{fill:#0d2136;font-family:'Manrope',system-ui,sans-serif;font-weight:600;font-size:15px}
+.ec-center-r{fill:url(#ecNavy);filter:url(#ecShadow)}
+.ec-center-ic{fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ec-center-t{fill:#fff;font-family:'Manrope',system-ui,sans-serif;font-weight:700;font-size:15px;text-anchor:middle}
+.ec-center-s{fill:#9fc0f2;font-family:'Manrope',system-ui,sans-serif;font-weight:600;font-size:11px;text-anchor:middle}
+.ec-pulse{fill:#1763e6}
+.ec-pulse-h{fill:#e0891b}
+.ec-halo{fill:none;stroke:#1763e6;opacity:.25}
+@media(prefers-reduced-motion:reduce){.ec-pulse,.ec-pulse-h,.ec-halo{display:none}}
+.concept-note{max-width:1120px;margin:0 auto;padding:14px 24px 40px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/img/logo-navy.png" alt="ЭНЕРС"><span class="logo-tag">Энергетика и<br>инженерные системы</span></a>
+    <nav class="nav-links">
+      <a href="/uslugi/">Услуги</a>
+      <a href="/energoservis.html">Энергосервис</a>
+      <a href="/proekty/">Проекты</a>
+      <a href="/o-kompanii.html">О компании</a>
+      <a href="/kontakty.html">Контакты</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-mail" href="mailto:info@enersgroup.ru">info@enersgroup.ru</a>
+      <a class="btn btn-primary" href="/kontakty.html">Оставить заявку</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg-fx" aria-hidden="true">
+    <span class="glow g1"></span><span class="glow g2"></span><span class="glow g3"></span><span class="hero-sheen"></span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">Энергетическая инфраструктура · инженерные системы</p>
+      <h1>Энергетика и <em>инженерные системы</em> вашего производства</h1>
+      <p class="lead">Проектируем, поставляем и строим энергетическую инфраструктуру предприятия под
+        ключ — энергоцентры, котельные, тепловые пункты, компрессорные и инженерные системы.
+        По модели энергосервиса — с оплатой из вашей экономии.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="/energoservis.html">Рассчитать экономию →</a>
+        <a class="btn btn-ghost btn-lg" href="/proekty/">Наши проекты</a>
+      </div>
+      <div class="hero-trust">
+        <div class="t"><b>100+ МВт</b><span>реализованной мощности</span></div>
+        <div class="t"><b>30+</b><span>объектов под ключ</span></div>
+        <div class="t"><b>10+ лет</b><span>опыт команды</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ecosys">
+        <svg viewBox="0 0 640 600" role="img" aria-label="Схема: энергетическая инфраструктура предприятия">
+          <defs>
+            <linearGradient id="ecNavy" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#173759"/><stop offset="1" stop-color="#0d2136"/>
+            </linearGradient>
+            <filter id="ecShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#12315a" flood-opacity="0.14"/>
+            </filter>
+          </defs>
+
+          <!-- связи -->
+          <g>
+            <path class="ec-conn" d="M320 300 L150 78"/>
+            <path class="ec-conn" d="M320 300 L490 82"/>
+            <path class="ec-conn" d="M320 300 L540 300"/>
+            <path class="ec-conn" d="M320 300 L485 520"/>
+            <path class="ec-conn" d="M320 300 L170 522"/>
+            <path class="ec-conn" d="M320 300 L100 300"/>
+          </g>
+
+          <!-- бегущие импульсы (ресурсы/энергия) -->
+          <g>
+            <circle class="ec-pulse" r="4"><animateMotion dur="4.4s" repeatCount="indefinite" path="M320 300 L150 78"/></circle>
+            <circle class="ec-pulse" r="4"><animateMotion dur="4.4s" begin="2.2s" repeatCount="indefinite" path="M320 300 L150 78"/></circle>
+            <circle class="ec-pulse-h" r="4"><animateMotion dur="4.8s" begin="0.6s" repeatCount="indefinite" path="M320 300 L490 82"/></circle>
+            <circle class="ec-pulse-h" r="4"><animateMotion dur="4.8s" begin="3s" repeatCount="indefinite" path="M320 300 L490 82"/></circle>
+            <circle class="ec-pulse" r="4"><animateMotion dur="4s" begin="1s" repeatCount="indefinite" path="M320 300 L540 300"/></circle>
+            <circle class="ec-pulse" r="4"><animateMotion dur="4s" begin="3s" repeatCount="indefinite" path="M320 300 L540 300"/></circle>
+            <circle class="ec-pulse" r="4"><animateMotion dur="5s" begin="0.3s" repeatCount="indefinite" path="M320 300 L485 520"/></circle>
+            <circle class="ec-pulse-h" r="4"><animateMotion dur="4.6s" begin="1.6s" repeatCount="indefinite" path="M320 300 L170 522"/></circle>
+            <circle class="ec-pulse-h" r="4"><animateMotion dur="4.6s" begin="3.8s" repeatCount="indefinite" path="M320 300 L170 522"/></circle>
+            <circle class="ec-pulse" r="4"><animateMotion dur="4.2s" begin="1.2s" repeatCount="indefinite" path="M320 300 L100 300"/></circle>
+          </g>
+
+          <!-- модули -->
+          <!-- Энергоцентр (150,78) -->
+          <g transform="translate(62,52)">
+            <rect class="ec-card" x="0" y="0" width="176" height="52" rx="13"/>
+            <circle class="ec-cardic" cx="30" cy="26" r="16"/>
+            <polygon class="ec-icf" transform="translate(21,17) scale(0.75)" points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            <text class="ec-label" x="56" y="31">Энергоцентр</text>
+          </g>
+          <!-- Котельная (490,82) -->
+          <g transform="translate(402,56)">
+            <rect class="ec-card" x="0" y="0" width="176" height="52" rx="13"/>
+            <circle class="ec-cardic" cx="30" cy="26" r="16"/>
+            <path class="ec-ic" transform="translate(21,17) scale(0.75)" d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/>
+            <text class="ec-label" x="56" y="31">Котельная</text>
+          </g>
+          <!-- Компрессорная (540,300) -->
+          <g transform="translate(452,274)">
+            <rect class="ec-card" x="0" y="0" width="180" height="52" rx="13"/>
+            <circle class="ec-cardic" cx="30" cy="26" r="16"/>
+            <g class="ec-ic" transform="translate(21,17) scale(0.75)"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+            <text class="ec-label" x="56" y="31">Компрессорная</text>
+          </g>
+          <!-- Насосная (485,520) -->
+          <g transform="translate(397,494)">
+            <rect class="ec-card" x="0" y="0" width="176" height="52" rx="13"/>
+            <circle class="ec-cardic" cx="30" cy="26" r="16"/>
+            <path class="ec-ic" transform="translate(21,17) scale(0.75)" d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>
+            <text class="ec-label" x="56" y="31">Насосная</text>
+          </g>
+          <!-- Тепловые пункты (170,522) -->
+          <g transform="translate(82,496)">
+            <rect class="ec-card" x="0" y="0" width="180" height="52" rx="13"/>
+            <circle class="ec-cardic" cx="30" cy="26" r="16"/>
+            <path class="ec-ic" transform="translate(21,17) scale(0.75)" d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>
+            <text class="ec-label" x="56" y="31">Тепловые пункты</text>
+          </g>
+          <!-- АСКУЭ (100,300) -->
+          <g transform="translate(12,274)">
+            <rect class="ec-card" x="0" y="0" width="176" height="52" rx="13"/>
+            <circle class="ec-cardic" cx="30" cy="26" r="16"/>
+            <path class="ec-ic" transform="translate(21,17) scale(0.75)" d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            <text class="ec-label" x="56" y="31">АСКУЭ · учёт</text>
+          </g>
+
+          <!-- центр: предприятие -->
+          <circle class="ec-halo" cx="320" cy="300" r="70"><animate attributeName="r" values="62;84;62" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.28;0;0.28" dur="4s" repeatCount="indefinite"/></circle>
+          <g transform="translate(228,262)">
+            <rect class="ec-center-r" x="0" y="0" width="184" height="76" rx="16"/>
+            <g class="ec-center-ic" transform="translate(18,26) scale(1.05)"><path d="M3 21h18"/><path d="M4 21V11l5-3.2V11l5-3.2V21"/><path d="M13 21v-5h4v5"/></g>
+            <text class="ec-center-t" x="108" y="34">Промышленное</text>
+            <text class="ec-center-t" x="108" y="52">предприятие</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+<p class="concept-note">Концепт-превью hero главной страницы: вместо фото ГПУ — «энергетический контур предприятия». В центре — производство заказчика, вокруг — объекты и системы в компетенциях Энерс; по связям течёт энергия/ресурсы (синие импульсы — электроэнергия, оранжевые — тепло). Анимацию можно замедлить, сделать тоньше или запускать при скролле.</p>
+</body>
+</html>
