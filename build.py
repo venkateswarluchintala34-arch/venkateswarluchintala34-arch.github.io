@@ -27,7 +27,7 @@ def HEADER(active=""):
     return f'''
 <header>
   <div class="wrap nav">
-    <a class="logo" href="/"><img class="logo-img" src="/assets/img/logo-navy.png" alt="ЭНЕРС"></a>
+    <a class="logo" href="/"><img class="logo-img" src="/assets/img/logo-navy.png" alt="ЭНЕРС"><span class="logo-tag">Энергетика и<br>инженерные системы</span></a>
     <nav class="nav-links">
       {a("/uslugi/","uslugi","Услуги")}
       {a("/energoservis.html","energoservis","Энергосервис")}

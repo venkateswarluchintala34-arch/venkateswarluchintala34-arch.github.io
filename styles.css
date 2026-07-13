@@ -75,6 +75,9 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);
 .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;color:var(--navy);letter-spacing:-.01em;flex:none}
 .logo-img{height:50px;width:auto;display:block}
 .foot-col .logo-img{height:58px}
+.logo-tag{font-size:12px;font-weight:600;line-height:1.25;color:var(--muted);letter-spacing:.01em;
+  padding-left:13px;margin-left:3px;border-left:1.5px solid var(--line-2);white-space:nowrap}
+@media(min-width:861px) and (max-width:1120px){.logo-tag{display:none}}
 .logo b{font-weight:800}
 .logo span{color:var(--muted);font-weight:600}
 .nav-links{display:flex;gap:26px;align-items:center;margin-left:20px}
@@ -273,6 +276,7 @@ footer .logo span{color:#8ea4be}
 @media(max-width:860px){
   .nav-links{display:none}
   .burger{display:block}
+  .nav-cta .btn-primary{display:none}
 }
 @media(max-width:560px){
   .section{padding:64px 0}
