@@ -170,15 +170,38 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);
 .esk .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;color:#fff}
 
 /* ---- projects ---- */
-.proj{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
-  background:var(--navy);aspect-ratio:4/3;display:block}
-.proj img{width:100%;height:100%;object-fit:cover;transition:.5s;opacity:.92}
-.proj:hover img{transform:scale(1.06);opacity:1}
-.proj .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 20px 18px;z-index:2;
-  background:linear-gradient(0deg,rgba(8,18,32,.92),transparent)}
-.proj .cap b{display:block;color:#fff;font-size:17px;font-weight:800}
-.proj .cap span{color:#b9c6d6;font-size:13px;font-weight:600}
-.proj.tall{grid-row:span 2;aspect-ratio:auto}
+.proj{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
+  background:#fff;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.proj .proj-img{aspect-ratio:16/10;overflow:hidden;background:var(--navy)}
+.proj img{width:100%;height:100%;object-fit:cover;transition:.5s;opacity:.96;display:block}
+.proj:hover img{transform:scale(1.05);opacity:1}
+.proj-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:11px;flex:1}
+.proj-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.proj-head b{color:var(--navy);font-size:17px;font-weight:800;line-height:1.2}
+.proj-head em{font-style:normal;color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap}
+.proj-params{display:flex;flex-wrap:wrap;gap:6px}
+.proj-params span{font-size:12.5px;font-weight:600;color:var(--accent-700);background:var(--accent-soft);border-radius:6px;padding:3px 9px}
+.proj-desc{color:var(--text);font-size:14.5px;line-height:1.55;margin:0}
+
+/* отрасли применения */
+.ind{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 24px 26px}
+.ind h3{color:var(--navy);font-size:17px;margin:0 0 8px}
+.ind p{color:var(--text);font-size:14.5px;line-height:1.55;margin:0}
+
+/* калькулятор экономии ЭСК */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:30px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:var(--shadow)}
+.calc-inputs{display:grid;gap:15px;align-content:start}
+.calc-inputs label{display:grid;gap:6px;font-size:13.5px;color:var(--muted);font-weight:600}
+.calc-inputs input{font-size:16px;padding:11px 14px;border:1px solid var(--line-2);border-radius:10px;color:var(--ink);font-family:inherit;background:#fff}
+.calc-inputs input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.calc-out{display:flex;flex-direction:column;gap:12px;justify-content:center;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:26px}
+.calc-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding-bottom:11px;border-bottom:1px dashed var(--line-2)}
+.calc-row span{color:var(--text);font-size:15px}
+.calc-row b{color:var(--navy);font-size:19px;font-weight:800;white-space:nowrap}
+.calc-row.big{border-bottom:none;padding-top:4px}
+.calc-row.big b{color:var(--accent);font-size:27px}
+.calc-note{font-size:12.5px;color:var(--muted);line-height:1.5;margin:2px 0 6px}
+@media(max-width:760px){.calc{grid-template-columns:1fr;padding:24px}}
 
 /* ---- process ---- */
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s}

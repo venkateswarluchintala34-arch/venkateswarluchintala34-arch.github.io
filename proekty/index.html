@@ -34,18 +34,54 @@
   <p class="page-lead">Энергоцентры, котельные и инженерные системы, построенные и обслуживаемые нашей командой. Более 100 МВт и 30+ объектов.</p>
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap"><div class="grid g-3">
-      <a class="proj reveal" href="/kontakty.html"><img src="/assets/img/real/ural-gpu-2.jpg" alt="Энергоцентр на ГПУ">
-        <div class="cap"><b>Энергоцентр на ГПУ</b><span>6 МВт · энергосервис 6 лет</span></div></a>
-      <a class="proj reveal" href="/kontakty.html"><img src="/assets/img/real/atmosfera-1.jpg" alt="Энергоцентр">
-        <div class="cap"><b>Энергоцентр</b><span>Стальные конструкции · градирни</span></div></a>
-      <a class="proj reveal" href="/kontakty.html"><img src="/assets/img/real/ks-1.jpg" alt="Компрессорная станция">
-        <div class="cap"><b>Компрессорная станция</b><span>Винтовые компрессоры</span></div></a>
-      <a class="proj reveal" href="/kontakty.html"><img src="/assets/img/real/miass-1.jpg" alt="Энергоцентр · Миасс">
-        <div class="cap"><b>Энергоцентр · Миасс</b><span>Строительство и монтаж</span></div></a>
-      <a class="proj reveal" href="/kontakty.html"><img src="/assets/img/real/ks-2.jpg" alt="Машинное отделение">
-        <div class="cap"><b>Машинное отделение</b><span>Насосно-компрессорное оборудование</span></div></a>
-      <a class="proj reveal" href="/kontakty.html"><img src="/assets/img/real/ural-gpu-3.jpg" alt="Машинный зал ГПУ">
-        <div class="cap"><b>Машинный зал ГПУ</b><span>Когенерация</span></div></a></div>
+      <article class="proj reveal">
+        <div class="proj-img"><img src="/assets/img/real/ural-gpu-2.jpg" alt="Энергоцентр на ГПУ" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="proj-head"><b>Энергоцентр на ГПУ</b><em>Урал</em></div>
+          <div class="proj-params"><span>6 МВт</span><span>энергосервис 6 лет</span></div>
+          <p class="proj-desc">3 рабочих ГПУ + 1 резервная, параллель с сетью, трубный газ. Оплата из экономии.</p>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-img"><img src="/assets/img/real/atmosfera-1.jpg" alt="Энергоцентр" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="proj-head"><b>Энергоцентр</b><em>Атмосфера</em></div>
+          <div class="proj-params"><span>Стальные конструкции</span><span>градирни</span></div>
+          <p class="proj-desc">Компоновка энергоцентра с градирнями и системой оборотного водоснабжения.</p>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-img"><img src="/assets/img/real/ks-1.jpg" alt="Компрессорная станция" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="proj-head"><b>Компрессорная станция</b></div>
+          <div class="proj-params"><span>Винтовые компрессоры</span></div>
+          <p class="proj-desc">Станция сжатого воздуха: компрессоры, ресиверы, осушка, обвязка.</p>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-img"><img src="/assets/img/real/miass-1.jpg" alt="Энергоцентр · Миасс" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="proj-head"><b>Энергоцентр · Миасс</b><em>Миасс</em></div>
+          <div class="proj-params"><span>Строительство и монтаж</span></div>
+          <p class="proj-desc">Возведение энергоцентра: металлоконструкции, градирни, обвязка.</p>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-img"><img src="/assets/img/real/ks-2.jpg" alt="Машинное отделение" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="proj-head"><b>Машинное отделение</b></div>
+          <div class="proj-params"><span>Насосно-компрессорное оборудование</span></div>
+          <p class="proj-desc">Монтаж технологического оборудования и трубопроводной обвязки.</p>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-img"><img src="/assets/img/real/ural-gpu-3.jpg" alt="Машинный зал ГПУ" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="proj-head"><b>Машинный зал ГПУ</b><em>Урал</em></div>
+          <div class="proj-params"><span>Когенерация</span></div>
+          <p class="proj-desc">Газопоршневые двигатели с утилизацией тепла в машинном зале.</p>
+        </div>
+      </article></div>
   <p style="text-align:center;color:var(--muted);margin-top:32px;font-size:15px">Подписи и характеристики объектов уточняются. По части проектов действует NDA.</p>
 </div></section>
 <section class="stats-band"><div class="wrap">
@@ -111,6 +147,24 @@
       }catch(err){note.textContent='Не удалось отправить. Проверьте соединение.';}
       finally{btn.disabled=false;btn.textContent=o;}
     });
+  })();
+  // калькулятор экономии ЭСК (только на странице с #c-load)
+  (function(){
+    const load=document.getElementById('c-load');if(!load)return;
+    const ids=['c-load','c-hours','c-tariff','c-gas'].map(i=>document.getElementById(i));
+    const eff=0.42,lhv=9.3,om=1.0;
+    const ru=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:0});
+    const one=n=>n.toFixed(1).replace('.',',');
+    function calc(){
+      const [L,H,T,G]=ids.map(e=>parseFloat(e.value)||0);
+      const cost=G/(eff*lhv)+om;
+      const delta=Math.max(T-cost,0);
+      const year=L*H*delta;
+      document.getElementById('o-cost').textContent=one(cost)+' ₽/кВт·ч';
+      document.getElementById('o-delta').textContent=one(delta)+' ₽/кВт·ч';
+      document.getElementById('o-year').textContent=ru(year)+' ₽';
+    }
+    ids.forEach(e=>e.addEventListener('input',calc));calc();
   })();
 </script>
 </body></html>

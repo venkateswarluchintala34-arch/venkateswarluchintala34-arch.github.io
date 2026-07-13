@@ -111,6 +111,24 @@ SCRIPT = '''
       finally{btn.disabled=false;btn.textContent=o;}
     });
   })();
+  // калькулятор экономии ЭСК (только на странице с #c-load)
+  (function(){
+    const load=document.getElementById('c-load');if(!load)return;
+    const ids=['c-load','c-hours','c-tariff','c-gas'].map(i=>document.getElementById(i));
+    const eff=0.42,lhv=9.3,om=1.0;
+    const ru=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:0});
+    const one=n=>n.toFixed(1).replace('.',',');
+    function calc(){
+      const [L,H,T,G]=ids.map(e=>parseFloat(e.value)||0);
+      const cost=G/(eff*lhv)+om;
+      const delta=Math.max(T-cost,0);
+      const year=L*H*delta;
+      document.getElementById('o-cost').textContent=one(cost)+' ₽/кВт·ч';
+      document.getElementById('o-delta').textContent=one(delta)+' ₽/кВт·ч';
+      document.getElementById('o-year').textContent=ru(year)+' ₽';
+    }
+    ids.forEach(e=>e.addEventListener('input',calc));calc();
+  })();
 </script>
 </body></html>'''
 
@@ -270,6 +288,17 @@ def svc_block(i, s):
   </section>'''
 svc_sections="".join(svc_block(i,s) for i,s in enumerate(SERVICES))
 
+INDUSTRIES=[
+ ("Пищевая промышленность","Стабильные электро- и тепловые нагрузки, потребность в паре, холоде и пищевом CO₂."),
+ ("Тепличные комплексы","Электроэнергия, тепло и CO₂ для досветки и подкормки — из одного энергоцентра."),
+ ("Целлюлозно-бумажные производства","Большие объёмы пара и электроэнергии в непрерывном режиме работы."),
+ ("Машиностроение и металлообработка","Сжатый воздух, тепло и надёжное электроснабжение производственных цехов."),
+ ("Нефтегаз и добыча","Автономная генерация на попутном газе, энергоснабжение удалённых площадок."),
+ ("Логистика и склады","Отопление больших площадей, освещение и резервное электроснабжение."),
+]
+industries="".join(f'''
+      <div class="ind reveal"><h3>{n}</h3><p>{d}</p></div>''' for (n,d) in INDUSTRIES)
+
 PAGES["uslugi/index.html"]=dict(title="Услуги — Eners Group",
   desc="Направления Eners Group: энергоцентры на ГПУ, котельные, тепловые пункты, компрессорные и насосные станции, извлечение CO₂, газолучистое отопление, АСКУЭ и диспетчеризация.",
   active="uslugi", body=f'''
@@ -281,6 +310,12 @@ PAGES["uslugi/index.html"]=dict(title="Услуги — Eners Group",
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap"><div class="grid g-4">{svc_cards}</div></div></section>
 {svc_sections}
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">Отрасли применения</p>
+    <h2>Где мы решаем задачи энергоснабжения</h2>
+    <p>Подбираем состав энергетической инфраструктуры под режим работы и нагрузки конкретного производства.</p></div>
+  <div class="grid g-3">{industries}</div>
+</div></section>
 <section class="section soft"><div class="wrap"><div class="cta reveal">
   <h2>Не нашли нужное направление?</h2><p>Мы закрываем весь спектр энергетических и инженерных систем предприятия. Опишите задачу — предложим решение.</p>
   <a class="btn btn-primary btn-lg" href="/kontakty.html">Оставить заявку →</a></div></div></section>''')
@@ -294,9 +329,19 @@ PROJECTS=[
  ("real/ks-2.jpg","Машинное отделение","—","Насосно-компрессорное оборудование","Монтаж технологического оборудования и трубопроводной обвязки."),
  ("real/ural-gpu-3.jpg","Машинный зал ГПУ","Урал","Когенерация","Газопоршневые двигатели с утилизацией тепла в машинном зале."),
 ]
-proj_cards="".join(f'''
-      <a class="proj reveal" href="/kontakty.html"><img src="/assets/img/{img}" alt="{t}">
-        <div class="cap"><b>{t}</b><span>{sub}</span></div></a>''' for (img,t,client,sub,desc) in PROJECTS)
+def proj_card(img,t,client,sub,desc):
+    params="".join(f'<span>{x.strip()}</span>' for x in sub.split('·') if x.strip())
+    loc=f'<em>{client}</em>' if client and client!='—' else ''
+    return f'''
+      <article class="proj reveal">
+        <div class="proj-img"><img src="/assets/img/{img}" alt="{t}" loading="lazy"></div>
+        <div class="proj-body">
+          <div class="proj-head"><b>{t}</b>{loc}</div>
+          <div class="proj-params">{params}</div>
+          <p class="proj-desc">{desc}</p>
+        </div>
+      </article>'''
+proj_cards="".join(proj_card(*p) for p in PROJECTS)
 PAGES["proekty/index.html"]=dict(title="Проекты — Eners Group",
   desc="Реализованные объекты Eners Group: энергоцентры на ГПУ, котельные, компрессорные станции. Реальные фотографии объектов.",
   active="proekty", body=f'''
@@ -344,7 +389,27 @@ PAGES["energoservis.html"]=dict(title="Энергосервис (ЭСК) — Ene
     <div class="step reveal"><h3>Оплата из экономии</h3><p>Вы платите из фактической экономии по договору.</p></div>
   </div>
 </div></section>
-<section class="section"><div class="wrap"><div class="cta reveal">
+<section class="section" id="calc"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">Калькулятор экономии</p>
+    <h2>Оцените экономию от собственной генерации</h2>
+    <p>Предварительный расчёт по модели энергосервиса. Точные цифры считаем после аудита площадки.</p></div>
+  <div class="calc reveal">
+    <div class="calc-inputs">
+      <label>Средняя электрическая нагрузка, кВт<input type="number" id="c-load" value="1000" min="0" step="50"></label>
+      <label>Часов работы в год<input type="number" id="c-hours" value="8000" min="0" max="8760" step="100"></label>
+      <label>Текущий тариф на электроэнергию, ₽/кВт·ч<input type="number" id="c-tariff" value="8" min="0" step="0.1"></label>
+      <label>Цена газа, ₽/м³<input type="number" id="c-gas" value="7" min="0" step="0.1"></label>
+    </div>
+    <div class="calc-out">
+      <div class="calc-row"><span>Себестоимость собственной э/э</span><b id="o-cost">—</b></div>
+      <div class="calc-row"><span>Экономия на каждом кВт·ч</span><b id="o-delta">—</b></div>
+      <div class="calc-row big"><span>Экономия в год</span><b id="o-year">—</b></div>
+      <p class="calc-note">Ориентировочно, по типовым параметрам ГПУ (электрический КПД ~42 %, теплотворность газа ~9,3 кВт·ч/м³, эксплуатация ~1 ₽/кВт·ч). Без учёта дополнительного эффекта от утилизации тепла (когенерация) — он увеличивает экономию.</p>
+      <a class="btn btn-primary" href="/kontakty.html">Точный расчёт по вашему объекту →</a>
+    </div>
+  </div>
+</div></section>
+<section class="section soft"><div class="wrap"><div class="cta reveal">
   <h2>Посчитаем экономию под ваш объект</h2><p>Оставьте параметры — оценим мощность, capex/opex и потенциальную экономию по модели энергосервиса.</p>
   <a class="btn btn-primary btn-lg" href="/kontakty.html">Оставить заявку →</a></div></div></section>''')
 

@@ -198,6 +198,18 @@
       </div>
     </div>
   </section>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">Отрасли применения</p>
+    <h2>Где мы решаем задачи энергоснабжения</h2>
+    <p>Подбираем состав энергетической инфраструктуры под режим работы и нагрузки конкретного производства.</p></div>
+  <div class="grid g-3">
+      <div class="ind reveal"><h3>Пищевая промышленность</h3><p>Стабильные электро- и тепловые нагрузки, потребность в паре, холоде и пищевом CO₂.</p></div>
+      <div class="ind reveal"><h3>Тепличные комплексы</h3><p>Электроэнергия, тепло и CO₂ для досветки и подкормки — из одного энергоцентра.</p></div>
+      <div class="ind reveal"><h3>Целлюлозно-бумажные производства</h3><p>Большие объёмы пара и электроэнергии в непрерывном режиме работы.</p></div>
+      <div class="ind reveal"><h3>Машиностроение и металлообработка</h3><p>Сжатый воздух, тепло и надёжное электроснабжение производственных цехов.</p></div>
+      <div class="ind reveal"><h3>Нефтегаз и добыча</h3><p>Автономная генерация на попутном газе, энергоснабжение удалённых площадок.</p></div>
+      <div class="ind reveal"><h3>Логистика и склады</h3><p>Отопление больших площадей, освещение и резервное электроснабжение.</p></div></div>
+</div></section>
 <section class="section soft"><div class="wrap"><div class="cta reveal">
   <h2>Не нашли нужное направление?</h2><p>Мы закрываем весь спектр энергетических и инженерных систем предприятия. Опишите задачу — предложим решение.</p>
   <a class="btn btn-primary btn-lg" href="/kontakty.html">Оставить заявку →</a></div></div></section>
@@ -258,6 +270,24 @@
       }catch(err){note.textContent='Не удалось отправить. Проверьте соединение.';}
       finally{btn.disabled=false;btn.textContent=o;}
     });
+  })();
+  // калькулятор экономии ЭСК (только на странице с #c-load)
+  (function(){
+    const load=document.getElementById('c-load');if(!load)return;
+    const ids=['c-load','c-hours','c-tariff','c-gas'].map(i=>document.getElementById(i));
+    const eff=0.42,lhv=9.3,om=1.0;
+    const ru=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:0});
+    const one=n=>n.toFixed(1).replace('.',',');
+    function calc(){
+      const [L,H,T,G]=ids.map(e=>parseFloat(e.value)||0);
+      const cost=G/(eff*lhv)+om;
+      const delta=Math.max(T-cost,0);
+      const year=L*H*delta;
+      document.getElementById('o-cost').textContent=one(cost)+' ₽/кВт·ч';
+      document.getElementById('o-delta').textContent=one(delta)+' ₽/кВт·ч';
+      document.getElementById('o-year').textContent=ru(year)+' ₽';
+    }
+    ids.forEach(e=>e.addEventListener('input',calc));calc();
   })();
 </script>
 </body></html>
