@@ -66,7 +66,7 @@
       <div class="calc-row"><span>Себестоимость собственной э/э</span><b id="o-cost">—</b></div>
       <div class="calc-row"><span>Экономия на каждом кВт·ч</span><b id="o-delta">—</b></div>
       <div class="calc-row big"><span>Экономия в год</span><b id="o-year">—</b></div>
-      <p class="calc-note">Ориентировочно, по типовым параметрам ГПУ (электрический КПД ~42 %, теплотворность газа ~9,3 кВт·ч/м³, эксплуатация ~1 ₽/кВт·ч). Без учёта дополнительного эффекта от утилизации тепла (когенерация) — он увеличивает экономию.</p>
+      <p class="calc-note">Ориентировочно, по типовым параметрам ГПУ (электрический КПД ~42 %, теплотворность газа ~9,3 кВт·ч/м³, эксплуатация ~2,5 ₽/кВт·ч). Без учёта дополнительного эффекта от утилизации тепла (когенерация) — он увеличивает экономию.</p>
       <a class="btn btn-primary" href="/kontakty.html">Точный расчёт по вашему объекту →</a>
     </div>
   </div>
@@ -136,7 +136,7 @@
   (function(){
     const load=document.getElementById('c-load');if(!load)return;
     const ids=['c-load','c-hours','c-tariff','c-gas'].map(i=>document.getElementById(i));
-    const eff=0.42,lhv=9.3,om=1.0;
+    const eff=0.42,lhv=9.3,om=2.5;
     const ru=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:0});
     const one=n=>n.toFixed(1).replace('.',',');
     function calc(){

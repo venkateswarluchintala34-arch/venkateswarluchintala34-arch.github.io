@@ -114,7 +114,7 @@
   (function(){
     const load=document.getElementById('c-load');if(!load)return;
     const ids=['c-load','c-hours','c-tariff','c-gas'].map(i=>document.getElementById(i));
-    const eff=0.42,lhv=9.3,om=1.0;
+    const eff=0.42,lhv=9.3,om=2.5;
     const ru=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:0});
     const one=n=>n.toFixed(1).replace('.',',');
     function calc(){
