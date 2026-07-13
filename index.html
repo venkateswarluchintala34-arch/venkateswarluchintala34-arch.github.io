@@ -38,20 +38,10 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-bg-fx" aria-hidden="true">
-    <svg viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
-      <path class="fx-line" d="M-60 140 H1260"/>
-      <path class="fx-line" d="M-60 320 H560 Q660 320 660 410 V540 H1260"/>
-      <path class="fx-line" d="M-60 520 H300 Q400 520 400 430 V250 H1260"/>
-      <path class="fx-line" d="M900 140 V640 M240 -20 V140"/>
-      <path class="fx-flow" d="M-60 140 H1260"/>
-      <path class="fx-flow f2" d="M-60 320 H560 Q660 320 660 410 V540 H1260"/>
-      <path class="fx-flow f3" d="M-60 520 H300 Q400 520 400 430 V250 H1260"/>
-      <circle class="fx-node big" cx="240" cy="140" r="12"/>
-      <circle class="fx-node" cx="660" cy="410" r="7"/>
-      <circle class="fx-node" cx="400" cy="430" r="7"/>
-      <circle class="fx-node" cx="900" cy="140" r="7"/>
-      <circle class="fx-node" cx="900" cy="250" r="7"/>
-    </svg>
+    <span class="glow g1"></span>
+    <span class="glow g2"></span>
+    <span class="glow g3"></span>
+    <span class="hero-sheen"></span>
   </div>
   <div class="wrap hero-grid">
     <div class="hero-text">
@@ -274,18 +264,12 @@
 </footer>
 
 <script>
-  // параллакс энергосхемы в hero — «инфраструктура раскрывается» при движении
+  // лёгкий параллакс градиентных свечений hero — только при скролле
   (function(){
     const fx=document.querySelector('.hero-bg-fx');if(!fx)return;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    const flows=fx.querySelectorAll('.fx-flow');
     let y=0,raf=false;
-    const upd=()=>{
-      fx.style.transform='translateY('+(y*0.18).toFixed(1)+'px)';   // параллакс
-      const off=(-y*0.7).toFixed(1);                                 // поток по линиям — от скролла
-      flows.forEach(f=>f.style.strokeDashoffset=off);
-      raf=false;
-    };
+    const upd=()=>{fx.style.transform='translateY('+(y*0.12).toFixed(1)+'px)';raf=false;};
     addEventListener('scroll',()=>{y=scrollY;if(!raf){raf=true;requestAnimationFrame(upd);}},{passive:true});
   })();
   // мобильное меню

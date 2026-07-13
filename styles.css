@@ -93,16 +93,17 @@ header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);
 .hero{position:relative;overflow:hidden;
   background:radial-gradient(120% 90% at 88% -8%,var(--accent-soft),transparent 55%),
     linear-gradient(180deg,#f1f6ff,#ffffff 68%)}
-/* энергосхема на фоне hero — движется ТОЛЬКО при скролле (dashoffset + параллакс задаёт JS) */
-.hero-bg-fx{position:absolute;inset:-8% 0;z-index:0;pointer-events:none;will-change:transform}
-.hero-bg-fx svg{width:100%;height:100%;display:block}
-.fx-line{fill:none;stroke:#cddef5;stroke-width:2}
-.fx-flow{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;
-  stroke-dasharray:2 26;opacity:.42}
-.fx-flow.f2{opacity:.34}
-.fx-flow.f3{opacity:.38}
-.fx-node{fill:#fff;stroke:var(--accent);stroke-width:2.6}
-.fx-node.big{fill:var(--accent-soft)}
+/* фон hero — мягкие градиентные свечения в брендовых тонах; лёгкий параллакс задаёт JS */
+.hero-bg-fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;will-change:transform}
+.hero-bg-fx .glow{position:absolute;border-radius:50%}
+.glow.g1{width:min(48vw,580px);aspect-ratio:1;top:-16%;right:-8%;filter:blur(18px);
+  background:radial-gradient(circle at 50% 50%,rgba(23,99,230,.30),rgba(23,99,230,0) 68%)}
+.glow.g2{width:min(42vw,500px);aspect-ratio:1;top:26%;left:-14%;filter:blur(22px);
+  background:radial-gradient(circle at 50% 50%,rgba(56,130,246,.20),rgba(56,130,246,0) 70%)}
+.glow.g3{width:min(36vw,440px);aspect-ratio:1;bottom:-28%;left:42%;filter:blur(26px);
+  background:radial-gradient(circle at 50% 50%,rgba(13,33,54,.10),rgba(13,33,54,0) 72%)}
+.hero-sheen{position:absolute;inset:0;
+  background:linear-gradient(115deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 58%)}
 .hero-grid{position:relative;z-index:2}
 @media(prefers-reduced-motion:reduce){.hero-bg-fx{transform:none!important}}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
