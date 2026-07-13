@@ -356,13 +356,13 @@ footer .logo span{color:#8ea4be}
 .hp-water{stroke:#2f9be0}.hp-water-hl{stroke:#9ecdf3}
 .hs-wire{fill:none;stroke:#1763e6;stroke-width:3;stroke-linecap:round}
 .hs-tick{stroke:#1763e6;stroke-width:2.2;stroke-linecap:round}
-.hs-card{fill:#fff;stroke:#e4ebf3;stroke-width:1.5;filter:url(#hsShadow)}
+.hs-card{fill:#fff;stroke:#e4ebf3;stroke-width:1.5}
 .hs-cic{fill:#e7f0ff}
 .hs-ic{fill:none;stroke:#1763e6;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .hs-icf{fill:#1763e6;stroke:none}
 .hs-t{fill:#0d2136;font-weight:700;font-size:14px}
 .hs-s{fill:#7089a3;font-weight:600;font-size:10.5px}
-.hs-plant{fill:url(#hsNavy);filter:url(#hsShadow)}
+.hs-plant{fill:url(#hsNavy)}
 .hs-pic{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .hs-pt{fill:#fff;font-weight:700;font-size:16px;text-anchor:middle}
 .hs-ps{fill:#9fc0f2;font-weight:600;font-size:10.5px;text-anchor:middle}
