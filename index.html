@@ -37,6 +37,22 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero">
+  <div class="hero-bg-fx" aria-hidden="true">
+    <svg viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+      <path class="fx-line" d="M-60 140 H1260"/>
+      <path class="fx-line" d="M-60 320 H560 Q660 320 660 410 V540 H1260"/>
+      <path class="fx-line" d="M-60 520 H300 Q400 520 400 430 V250 H1260"/>
+      <path class="fx-line" d="M900 140 V640 M240 -20 V140"/>
+      <path class="fx-flow" d="M-60 140 H1260"/>
+      <path class="fx-flow f2" d="M-60 320 H560 Q660 320 660 410 V540 H1260"/>
+      <path class="fx-flow f3" d="M-60 520 H300 Q400 520 400 430 V250 H1260"/>
+      <circle class="fx-node big" cx="240" cy="140" r="12"/>
+      <circle class="fx-node" cx="660" cy="410" r="7"/>
+      <circle class="fx-node" cx="400" cy="430" r="7"/>
+      <circle class="fx-node" cx="900" cy="140" r="7"/>
+      <circle class="fx-node" cx="900" cy="250" r="7"/>
+    </svg>
+  </div>
   <div class="wrap hero-grid">
     <div class="hero-text">
       <p class="eyebrow">Энергетическая инфраструктура · инженерные системы</p>
@@ -258,6 +274,14 @@
 </footer>
 
 <script>
+  // параллакс энергосхемы в hero — «инфраструктура раскрывается» при движении
+  (function(){
+    const fx=document.querySelector('.hero-bg-fx');if(!fx)return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    let y=0,raf=false;
+    addEventListener('scroll',()=>{y=scrollY;if(!raf){raf=true;requestAnimationFrame(()=>{
+      fx.style.transform='translateY('+(y*0.16).toFixed(1)+'px)';raf=false;});}},{passive:true});
+  })();
   // мобильное меню
   document.querySelector('.burger')?.addEventListener('click',()=>{
     const n=document.querySelector('.nav-links');
