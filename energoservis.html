@@ -55,23 +55,83 @@
   </div>
 </div></section>
 <section class="section" id="calc"><div class="wrap">
-  <div class="section-head reveal"><p class="eyebrow">Калькулятор экономии</p>
-    <h2>Оцените экономию от собственной генерации</h2>
-    <p>Предварительный расчёт по модели энергосервиса. Точные цифры считаем после аудита площадки.</p></div>
-  <div class="calc reveal">
-    <div class="calc-inputs">
-      <label>Средняя электрическая нагрузка, кВт<input type="number" id="c-load" value="1000" min="0" step="50"></label>
-      <label>Часов работы в год<input type="number" id="c-hours" value="8000" min="0" max="8760" step="100"></label>
-      <label>Текущий тариф на электроэнергию, ₽/кВт·ч<input type="number" id="c-tariff" value="8" min="0" step="0.1"></label>
-      <label>Цена газа, ₽/м³<input type="number" id="c-gas" value="7" min="0" step="0.1"></label>
+  <div class="section-head reveal"><p class="eyebrow">Калькуляторы эффекта</p>
+    <h2>Оцените эффект по каждому направлению</h2>
+    <p>Компетенции Энерс — не только генерация. Прикидочный расчёт для разных инженерных систем; точные цифры считаем после аудита. Эффект считается независимо от схемы — покупка или энергосервис.</p></div>
+  <div class="calc2 reveal">
+    <div class="calc-tabs">
+      <button class="ct active" data-tab="gpu" type="button">Энергоцентр</button>
+      <button class="ct" data-tab="boiler" type="button">Котельная</button>
+      <button class="ct" data-tab="compr" type="button">Компрессорная</button>
+      <button class="ct" data-tab="pump" type="button">Насосная</button>
+      <button class="ct" data-tab="ir" type="button">Газолучистое</button>
     </div>
-    <div class="calc-out">
-      <div class="calc-row"><span>Себестоимость собственной э/э</span><b id="o-cost">—</b></div>
-      <div class="calc-row"><span>Экономия на каждом кВт·ч</span><b id="o-delta">—</b></div>
-      <div class="calc-row big"><span>Экономия в год</span><b id="o-year">—</b></div>
-      <p class="calc-note">Ориентировочно, по типовым параметрам ГПУ (удельный расход газа ~0,29 м³/кВт·ч ≈ 290 м³/ч на МВт, эксплуатация ~2,5 ₽/кВт·ч). Без учёта дополнительного эффекта от утилизации тепла (когенерация) — он увеличивает экономию. Точный расчёт — после аудита площадки.</p>
-      <a class="btn btn-primary" href="/kontakty.html">Точный расчёт по вашему объекту →</a>
-    </div>
+    <div class="calc-pane active" data-pane="gpu"><div class="calc">
+      <div class="calc-inputs">
+        <label>Средняя электрическая нагрузка, кВт<input type="number" id="g-load" value="1000" min="0" step="50"></label>
+        <label>Часов работы в год<input type="number" id="g-hours" value="8000" min="0" max="8760" step="100"></label>
+        <label>Тариф на электроэнергию, ₽/кВт·ч<input type="number" id="g-tariff" value="8" min="0" step="0.1"></label>
+        <label>Цена газа, ₽/м³<input type="number" id="g-gas" value="7" min="0" step="0.1"></label>
+      </div>
+      <div class="calc-out">
+        <div class="calc-row"><span>Себестоимость своей э/э</span><b id="g-cost">—</b></div>
+        <div class="calc-row"><span>Экономия на кВт·ч</span><b id="g-delta">—</b></div>
+        <div class="calc-row big"><span>Экономия в год</span><b id="g-year">—</b></div>
+        <p class="calc-note">Своя генерация на ГПУ. Удельный расход газа ~0,29 м³/кВт·ч (≈290 м³/ч·МВт), эксплуатация ~2,5 ₽/кВт·ч. Когенерация (утилизация тепла) увеличивает эффект.</p>
+      </div>
+    </div></div>
+    <div class="calc-pane" data-pane="boiler"><div class="calc">
+      <div class="calc-inputs">
+        <label>Тепловая нагрузка, Гкал/год<input type="number" id="b-gcal" value="5000" min="0" step="100"></label>
+        <label>Тариф на покупное тепло, ₽/Гкал<input type="number" id="b-tariff" value="2200" min="0" step="50"></label>
+        <label>Цена газа, ₽/м³<input type="number" id="b-gas" value="7" min="0" step="0.1"></label>
+      </div>
+      <div class="calc-out">
+        <div class="calc-row"><span>Себестоимость своего тепла</span><b id="b-cost">—</b></div>
+        <div class="calc-row"><span>Экономия на Гкал</span><b id="b-delta">—</b></div>
+        <div class="calc-row big"><span>Экономия в год</span><b id="b-year">—</b></div>
+        <p class="calc-note">Собственная котельная вместо покупного тепла. Удельный расход газа ~136 м³/Гкал (КПД котла ~92%) плюс эксплуатация ~150 ₽/Гкал.</p>
+      </div>
+    </div></div>
+    <div class="calc-pane" data-pane="compr"><div class="calc">
+      <div class="calc-inputs">
+        <label>Мощность компрессоров, кВт<input type="number" id="c-power" value="200" min="0" step="10"></label>
+        <label>Часов работы в год<input type="number" id="c-hours" value="6000" min="0" max="8760" step="100"></label>
+        <label>Тариф на электроэнергию, ₽/кВт·ч<input type="number" id="c-tariff" value="8" min="0" step="0.1"></label>
+        <label>Экономия от модернизации, %<input type="number" id="c-save" value="25" min="0" max="100" step="1"></label>
+      </div>
+      <div class="calc-out">
+        <div class="calc-row"><span>Экономия энергии</span><b id="c-kwh">—</b></div>
+        <div class="calc-row big"><span>Экономия в год</span><b id="c-year">—</b></div>
+        <p class="calc-note">Частотное регулирование, каскад и утилизация тепла компрессорной обычно дают 20–30% экономии электроэнергии на переменных режимах.</p>
+      </div>
+    </div></div>
+    <div class="calc-pane" data-pane="pump"><div class="calc">
+      <div class="calc-inputs">
+        <label>Мощность насосов, кВт<input type="number" id="p-power" value="110" min="0" step="10"></label>
+        <label>Часов работы в год<input type="number" id="p-hours" value="6000" min="0" max="8760" step="100"></label>
+        <label>Тариф на электроэнергию, ₽/кВт·ч<input type="number" id="p-tariff" value="8" min="0" step="0.1"></label>
+        <label>Экономия от ЧРП, %<input type="number" id="p-save" value="30" min="0" max="100" step="1"></label>
+      </div>
+      <div class="calc-out">
+        <div class="calc-row"><span>Экономия энергии</span><b id="p-kwh">—</b></div>
+        <div class="calc-row big"><span>Экономия в год</span><b id="p-year">—</b></div>
+        <p class="calc-note">Частотное регулирование насосов вместо дросселирования экономит 20–40% энергии на переменном расходе.</p>
+      </div>
+    </div></div>
+    <div class="calc-pane" data-pane="ir"><div class="calc">
+      <div class="calc-inputs">
+        <label>Расход газа на отопление, м³/год<input type="number" id="i-gas" value="120000" min="0" step="1000"></label>
+        <label>Экономия vs воздушного, %<input type="number" id="i-save" value="40" min="0" max="100" step="1"></label>
+        <label>Цена газа, ₽/м³<input type="number" id="i-price" value="7" min="0" step="0.1"></label>
+      </div>
+      <div class="calc-out">
+        <div class="calc-row"><span>Экономия газа</span><b id="i-gasm">—</b></div>
+        <div class="calc-row big"><span>Экономия в год</span><b id="i-year">—</b></div>
+        <p class="calc-note">Газолучистое (инфракрасное) отопление греет зоны и поверхности, а не весь объём воздуха — в высоких цехах экономит 30–50% газа против воздушного отопления.</p>
+      </div>
+    </div></div>
+    <div style="margin-top:22px"><a class="btn btn-primary" href="/kontakty.html">Точный расчёт по вашему объекту →</a></div>
   </div>
 </div></section>
 <section class="section soft"><div class="wrap"><div class="cta reveal">
@@ -135,23 +195,32 @@
       finally{btn.disabled=false;btn.textContent=o;}
     });
   })();
-  // калькулятор экономии ЭСК (только на странице с #c-load)
+  // калькуляторы эффекта по направлениям (страница с вкладками .ct)
   (function(){
-    const load=document.getElementById('c-load');if(!load)return;
-    const ids=['c-load','c-hours','c-tariff','c-gas'].map(i=>document.getElementById(i));
-    const sgc=0.29,om=2.5;  // удельный расход газа ~0,29 м³/кВт·ч (≈290 м³/ч на МВт); эксплуатация ₽/кВт·ч
+    const tabs=document.querySelectorAll('.ct');if(!tabs.length)return;
+    tabs.forEach(t=>t.addEventListener('click',()=>{
+      document.querySelectorAll('.ct').forEach(x=>x.classList.toggle('active',x===t));
+      const id=t.dataset.tab;
+      document.querySelectorAll('.calc-pane').forEach(p=>p.classList.toggle('active',p.dataset.pane===id));
+    }));
+    const num=id=>{const e=document.getElementById(id);return e?parseFloat(e.value)||0:0;};
+    const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
     const ru=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:0});
     const one=n=>n.toFixed(1).replace('.',',');
-    function calc(){
-      const [L,H,T,G]=ids.map(e=>parseFloat(e.value)||0);
-      const cost=sgc*G+om;
-      const delta=Math.max(T-cost,0);
-      const year=L*H*delta;
-      document.getElementById('o-cost').textContent=one(cost)+' ₽/кВт·ч';
-      document.getElementById('o-delta').textContent=one(delta)+' ₽/кВт·ч';
-      document.getElementById('o-year').textContent=ru(year)+' ₽';
+    function calcAll(){
+      const gc=0.29*num('g-gas')+2.5, gd=Math.max(num('g-tariff')-gc,0);
+      set('g-cost',one(gc)+' ₽/кВт·ч');set('g-delta',one(gd)+' ₽/кВт·ч');set('g-year',ru(num('g-load')*num('g-hours')*gd)+' ₽');
+      const bc=136*num('b-gas')+150, bd=Math.max(num('b-tariff')-bc,0);
+      set('b-cost',ru(bc)+' ₽/Гкал');set('b-delta',ru(bd)+' ₽/Гкал');set('b-year',ru(num('b-gcal')*bd)+' ₽');
+      const ck=num('c-power')*num('c-hours')*(num('c-save')/100);
+      set('c-kwh',ru(ck)+' кВт·ч');set('c-year',ru(ck*num('c-tariff'))+' ₽');
+      const pk=num('p-power')*num('p-hours')*(num('p-save')/100);
+      set('p-kwh',ru(pk)+' кВт·ч');set('p-year',ru(pk*num('p-tariff'))+' ₽');
+      const ig=num('i-gas')*(num('i-save')/100);
+      set('i-gasm',ru(ig)+' м³');set('i-year',ru(ig*num('i-price'))+' ₽');
     }
-    ids.forEach(e=>e.addEventListener('input',calc));calc();
+    document.querySelectorAll('#calc input').forEach(e=>e.addEventListener('input',calcAll));
+    calcAll();
   })();
 </script>
 </body></html>

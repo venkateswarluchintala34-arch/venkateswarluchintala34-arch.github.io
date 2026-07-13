@@ -394,3 +394,13 @@ footer .logo span{color:#8ea4be}
 .ef b{color:var(--navy);font-size:17px;font-weight:800}
 .ef span{color:var(--muted);font-size:13px;font-weight:600;line-height:1.35}
 @media(max-width:760px){.equip-grid{grid-template-columns:1fr}.equip-facts{grid-template-columns:1fr 1fr}}
+
+/* ---- калькуляторы: вкладки по направлениям ---- */
+.calc2{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow)}
+.calc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.ct{font-family:inherit;font-weight:700;font-size:14px;color:var(--muted);background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:9px 16px;cursor:pointer;transition:.15s}
+.ct:hover{color:var(--accent);border-color:var(--accent)}
+.ct.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.calc-pane{display:none}
+.calc-pane.active{display:block}
+.calc2 .calc{background:transparent;border:none;box-shadow:none;padding:0}
