@@ -168,14 +168,16 @@
       set('g-cost',one(gc)+' ₽/кВт·ч');set('g-delta',one(gd)+' ₽/кВт·ч');set('g-year',ru(num('g-load')*num('g-hours')*gd)+' ₽');
       const bc=136*num('b-gas')+150, bd=Math.max(num('b-tariff')-bc,0);
       set('b-cost',ru(bc)+' ₽/Гкал');set('b-delta',ru(bd)+' ₽/Гкал');set('b-year',ru(num('b-gcal')*bd)+' ₽');
-      const ck=num('c-power')*num('c-hours')*(num('c-save')/100);
-      set('c-kwh',ru(ck)+' кВт·ч');set('c-year',ru(ck*num('c-tariff'))+' ₽');
+      const cType=(document.getElementById('c-type')||{}).value, cNew=parseFloat(cType)||0;
+      const cCur=num('c-vol')*num('c-cur'), cNewK=num('c-vol')*cNew, cSave=Math.max(cCur-cNewK,0);
+      set('c-curkwh',ru(cCur)+' кВт·ч');set('c-newkwh',ru(cNewK)+' кВт·ч');set('c-year',ru(cSave*num('c-tariff'))+' ₽');
       const pk=num('p-power')*num('p-hours')*(num('p-save')/100);
       set('p-kwh',ru(pk)+' кВт·ч');set('p-year',ru(pk*num('p-tariff'))+' ₽');
-      const ig=num('i-gas')*(num('i-save')/100);
-      set('i-gasm',ru(ig)+' м³');set('i-year',ru(ig*num('i-price'))+' ₽');
+      const iQ=num('i-gcal'), iCur=iQ*num('i-tariff'), iGas=iQ*(1-num('i-save')/100)*136, iNew=iGas*num('i-price');
+      set('i-cur',ru(iCur)+' ₽');set('i-gasm',ru(iGas)+' м³');set('i-year',ru(Math.max(iCur-iNew,0))+' ₽');
     }
-    document.querySelectorAll('#calc input').forEach(e=>e.addEventListener('input',calcAll));
+    document.querySelectorAll('#calc input, #calc select').forEach(e=>e.addEventListener('input',calcAll));
+    document.querySelectorAll('#calc select').forEach(e=>e.addEventListener('change',calcAll));
     calcAll();
   })();
 </script>

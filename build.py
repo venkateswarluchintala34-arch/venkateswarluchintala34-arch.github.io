@@ -131,14 +131,16 @@ SCRIPT = '''
       set('g-cost',one(gc)+' ₽/кВт·ч');set('g-delta',one(gd)+' ₽/кВт·ч');set('g-year',ru(num('g-load')*num('g-hours')*gd)+' ₽');
       const bc=136*num('b-gas')+150, bd=Math.max(num('b-tariff')-bc,0);
       set('b-cost',ru(bc)+' ₽/Гкал');set('b-delta',ru(bd)+' ₽/Гкал');set('b-year',ru(num('b-gcal')*bd)+' ₽');
-      const ck=num('c-power')*num('c-hours')*(num('c-save')/100);
-      set('c-kwh',ru(ck)+' кВт·ч');set('c-year',ru(ck*num('c-tariff'))+' ₽');
+      const cType=(document.getElementById('c-type')||{}).value, cNew=parseFloat(cType)||0;
+      const cCur=num('c-vol')*num('c-cur'), cNewK=num('c-vol')*cNew, cSave=Math.max(cCur-cNewK,0);
+      set('c-curkwh',ru(cCur)+' кВт·ч');set('c-newkwh',ru(cNewK)+' кВт·ч');set('c-year',ru(cSave*num('c-tariff'))+' ₽');
       const pk=num('p-power')*num('p-hours')*(num('p-save')/100);
       set('p-kwh',ru(pk)+' кВт·ч');set('p-year',ru(pk*num('p-tariff'))+' ₽');
-      const ig=num('i-gas')*(num('i-save')/100);
-      set('i-gasm',ru(ig)+' м³');set('i-year',ru(ig*num('i-price'))+' ₽');
+      const iQ=num('i-gcal'), iCur=iQ*num('i-tariff'), iGas=iQ*(1-num('i-save')/100)*136, iNew=iGas*num('i-price');
+      set('i-cur',ru(iCur)+' ₽');set('i-gasm',ru(iGas)+' м³');set('i-year',ru(Math.max(iCur-iNew,0))+' ₽');
     }
-    document.querySelectorAll('#calc input').forEach(e=>e.addEventListener('input',calcAll));
+    document.querySelectorAll('#calc input, #calc select').forEach(e=>e.addEventListener('input',calcAll));
+    document.querySelectorAll('#calc select').forEach(e=>e.addEventListener('change',calcAll));
     calcAll();
   })();
 </script>
@@ -442,15 +444,16 @@ PAGES["energoservis.html"]=dict(title="Энергосервис (ЭСК) — Ene
     </div></div>
     <div class="calc-pane" data-pane="compr"><div class="calc">
       <div class="calc-inputs">
-        <label>Мощность компрессоров, кВт<input type="number" id="c-power" value="200" min="0" step="10"></label>
-        <label>Часов работы в год<input type="number" id="c-hours" value="6000" min="0" max="8760" step="100"></label>
+        <label>Объём выработки воздуха, тыс. м³/год<input type="number" id="c-vol" value="6000" min="0" step="100"></label>
+        <label>Текущий удельник, кВт·ч/1000 м³<input type="number" id="c-cur" value="150" min="0" step="1"></label>
+        <label>Новое оборудование<select id="c-type"><option value="120">Винтовой — 120 кВт·ч/1000 м³</option><option value="95">Центробежный — 95 кВт·ч/1000 м³</option></select></label>
         <label>Тариф на электроэнергию, ₽/кВт·ч<input type="number" id="c-tariff" value="8" min="0" step="0.1"></label>
-        <label>Экономия от модернизации, %<input type="number" id="c-save" value="25" min="0" max="100" step="1"></label>
       </div>
       <div class="calc-out">
-        <div class="calc-row"><span>Экономия энергии</span><b id="c-kwh">—</b></div>
+        <div class="calc-row"><span>Текущее потребление</span><b id="c-curkwh">—</b></div>
+        <div class="calc-row"><span>На новом оборудовании</span><b id="c-newkwh">—</b></div>
         <div class="calc-row big"><span>Экономия в год</span><b id="c-year">—</b></div>
-        <p class="calc-note">Частотное регулирование, каскад и утилизация тепла компрессорной обычно дают 20–30% экономии электроэнергии на переменных режимах.</p>
+        <p class="calc-note">Считаем по удельному расходу на выработку сжатого воздуха. Винтовые компрессоры ~120, центробежные ~95 кВт·ч на 1000 м³. Экономия — разница удельника вашего и нового оборудования.</p>
       </div>
     </div></div>
     <div class="calc-pane" data-pane="pump"><div class="calc">
@@ -468,14 +471,16 @@ PAGES["energoservis.html"]=dict(title="Энергосервис (ЭСК) — Ene
     </div></div>
     <div class="calc-pane" data-pane="ir"><div class="calc">
       <div class="calc-inputs">
-        <label>Расход газа на отопление, м³/год<input type="number" id="i-gas" value="120000" min="0" step="1000"></label>
-        <label>Экономия vs воздушного, %<input type="number" id="i-save" value="40" min="0" max="100" step="1"></label>
+        <label>Отопительная нагрузка, Гкал/год<input type="number" id="i-gcal" value="1000" min="0" step="10"></label>
+        <label>Тариф на текущее тепло, ₽/Гкал<input type="number" id="i-tariff" value="2200" min="0" step="50"></label>
         <label>Цена газа, ₽/м³<input type="number" id="i-price" value="7" min="0" step="0.1"></label>
+        <label>Снижение потребности в тепле, %<input type="number" id="i-save" value="35" min="0" max="80" step="1"></label>
       </div>
       <div class="calc-out">
-        <div class="calc-row"><span>Экономия газа</span><b id="i-gasm">—</b></div>
+        <div class="calc-row"><span>Текущие затраты на отопление</span><b id="i-cur">—</b></div>
+        <div class="calc-row"><span>Расход газа на газолучистое</span><b id="i-gasm">—</b></div>
         <div class="calc-row big"><span>Экономия в год</span><b id="i-year">—</b></div>
-        <p class="calc-note">Газолучистое (инфракрасное) отопление греет зоны и поверхности, а не весь объём воздуха — в высоких цехах экономит 30–50% газа против воздушного отопления.</p>
+        <p class="calc-note">Переход с традиционного отопления (Гкал по тарифу) на газолучистое — прямое сжигание газа. Зональный обогрев снижает потребность в тепле на 30–50%; расход газа ~136 м³/Гкал.</p>
       </div>
     </div></div>
     <div style="margin-top:22px"><a class="btn btn-primary" href="/kontakty.html">Точный расчёт по вашему объекту →</a></div>
