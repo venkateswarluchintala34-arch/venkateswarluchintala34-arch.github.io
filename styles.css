@@ -412,3 +412,14 @@ footer .logo span{color:#8ea4be}
 /* ---- нам доверяют (доска логотипов) ---- */
 .clients{max-width:720px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:20px;padding:40px 48px;box-shadow:var(--shadow)}
 .clients img{width:100%;height:auto;display:block}
+/* ---- Логотипы заказчиков: облако во всю ширину ---- */
+.logo-cloud{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:34px 52px;max-width:1120px;margin:0 auto;padding:8px 8px 0}
+.logo-cloud img{height:46px;width:auto;max-width:190px;object-fit:contain;opacity:.92;transition:opacity .2s ease,transform .2s ease}
+.logo-cloud img:hover{opacity:1;transform:translateY(-3px)}
+/* хаотичная вариация масштабов */
+.logo-cloud img:nth-child(3n){height:38px}
+.logo-cloud img:nth-child(4n){height:54px}
+.logo-cloud img:nth-child(5n){height:34px}
+.logo-cloud img:nth-child(7n){height:50px}
+.logo-cloud img:nth-child(8n){height:42px}
+@media(max-width:640px){.logo-cloud{gap:24px 32px}.logo-cloud img{height:34px!important;max-width:130px}}
