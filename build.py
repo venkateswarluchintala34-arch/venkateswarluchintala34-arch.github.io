@@ -219,9 +219,14 @@ SERVICES = [
   img="energocentr-3d-duo.jpg",
   spec='''<div class="spec"><h4>Линейка мощности ГПУ</h4>
         <div class="spec-row"><b>Weichai · двигатели Baudouin</b><span>0,1–1,5 МВт</span></div>
-        <div class="spec-row"><b>Jichai · CNPC, серия 190</b><span>0,5–4 МВт</span></div>
-        <div class="spec-row"><b>Типовые номиналы, кВт</b><span>100·250·500·700·1000·1400·1600·2000·3000·4000</span></div>
-        <div class="spec-row"><b>Энергоцентр (несколько ГПУ)</b><span>0,2–40 МВт и выше</span></div></div>'''),
+        <div class="spec-row"><b>Jichai · CNPC (GF-T)</b><span>0,4–4 МВт</span></div>
+        <div class="spec-row"><b>Энергоцентр (несколько ГПУ)</b><span>0,2–40 МВт и выше</span></div></div>
+        <div class="spec"><h4>Модельный ряд Jichai · CNPC</h4>
+        <div class="spec-row"><b>Jichai 400 / 450 / 500 GF-T</b><span>400 · 450 · 500 кВт</span></div>
+        <div class="spec-row"><b>Jichai 750 GF-T</b><span>750 кВт</span></div>
+        <div class="spec-row"><b>Jichai 1100 / 1200 GF-T</b><span>1100 · 1200 кВт</span></div>
+        <div class="spec-row"><b>Jichai 1500 / 2000 GF-T</b><span>1500 · 2000 кВт</span></div>
+        <div class="spec-row"><b>Jichai 4000 GF10-T</b><span>4000 кВт</span></div></div>'''),
  dict(k="kotelnye", p="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z", kind="path",
   title="Котельные",
   lead="Пар, горячая вода и термомасло для технологии и отопления.",
