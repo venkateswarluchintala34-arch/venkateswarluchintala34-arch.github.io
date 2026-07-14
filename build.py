@@ -78,12 +78,12 @@ FOOTER = '''
       <div class="foot-col">
         <h4>Контакты</h4>
         <a href="mailto:info@enersgroup.ru">info@enersgroup.ru</a>
-        <p>603016, г. Нижний Новгород,<br>ул. Героя Юрия Смирнова, д. 2</p>
-        <p>Офисы: Нижний Новгород · Миасс</p>
+        <p>603016, г. Нижний Новгород,<br>ул. Героя Юрия Смирнова, д. 2 (БЦ «Союз»)</p>
+        <p>Офисы: Нижний Новгород · Тольятти · Миасс</p>
       </div>
     </div>
     <div class="foot-bottom">
-      <div>© 2026 ООО «ЭНЕРСГРУПП» · ОГРН 1225200005722 · ИНН 5256201227</div>
+      <div>© 2026 ООО «ЭНЕРСГРУПП» · ОГРН 1225200005722 · ИНН 5256201227 · входит в ГК «Спектр»</div>
       <div><a href="/politika.html">Политика конфиденциальности</a> · Распределённая энергетика · ГПУ · Котельные</div>
     </div>
   </div>
@@ -161,7 +161,7 @@ PAGES = {}
 
 PAGES["kontakty.html"] = dict(
   title="Контакты — Eners Group",
-  desc="Контакты ООО «ЭНЕРСГРУПП»: офисы в Нижнем Новгороде и Миассе, e-mail info@enersgroup.ru. Оставьте заявку на энергопроект.",
+  desc="Контакты ООО «ЭНЕРСГРУПП»: офисы в Нижнем Новгороде, Тольятти и Миассе, e-mail info@enersgroup.ru. Оставьте заявку на энергопроект.",
   active="contacts",
   body=f'''
 {CRUMB([("Главная","/"),("Контакты",None)])}
@@ -180,8 +180,12 @@ PAGES["kontakty.html"] = dict(
         <a href="mailto:info@enersgroup.ru" class="ci-big">info@enersgroup.ru</a>
       </div>
       <div class="ci-block">
-        <h3>Офис · Нижний Новгород</h3>
-        <p>603016, г. Нижний Новгород,<br>ул. Героя Юрия Смирнова, д. 2</p>
+        <h3>Офис · Нижний Новгород <span style="font-weight:600;color:var(--muted);font-size:14px">(основной)</span></h3>
+        <p>603016, г. Нижний Новгород,<br>ул. Героя Юрия Смирнова, д. 2 (БЦ «Союз»)</p>
+      </div>
+      <div class="ci-block">
+        <h3>Офис · Тольятти</h3>
+        <p>Самарская обл., г. Тольятти,<br>Южное шоссе, д. 163</p>
       </div>
       <div class="ci-block">
         <h3>Офис · Миасс</h3>
@@ -189,7 +193,11 @@ PAGES["kontakty.html"] = dict(
       </div>
       <div class="ci-block">
         <h3>Реквизиты</h3>
-        <p>ООО «ЭНЕРСГРУПП»<br>ОГРН 1225200005722 · ИНН 5256201227</p>
+        <p>ООО «ЭНЕРСГРУПП» · входит в ГК «Спектр»<br>
+        ОГРН 1225200005722 · ИНН 5256201227 · КПП 525601001<br>
+        Р/с 40702810316600000019<br>
+        Банк ВТБ (ПАО), г. Москва · БИК 044525411<br>
+        К/с 30101810145250000411</p>
       </div>
     </div>
     <div class="form-card">
@@ -234,7 +242,7 @@ SERVICES = [
   body="Проектируем, поставляем, монтируем и обслуживаем компрессорные станции сжатого воздуха. Подбираем винтовые и центробежные компрессоры под фактический расход и давление, проектируем осушку, фильтрацию, ресиверы и разводку. Настраиваем управление по нагрузке (каскад, частотный привод) — это заметно снижает затраты на электроэнергию при переменном потреблении.",
   incl=["Винтовые и центробежные компрессоры","Осушители, фильтры, ресиверы","Трубопроводная разводка сжатого воздуха","Система управления и учёта потребления","Сервис, ремонт, аудит пневмосети"],
   apply="Любое производство, где используется сжатый воздух в технологии.",
-  img="kompressornaya-duo.jpg", spec=None),
+  img="kompressornaya-duo.jpg", img2="kompressornaya-duo-2.jpg", spec=None),
  dict(k="nasosnye", p="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z", kind="path",
   title="Насосные станции",
   lead="Надёжная подача воды и технологических сред под нужным давлением.",
@@ -289,7 +297,8 @@ svc_cards="".join(f'''
 
 def svc_block(i, s):
     incl="".join(f'<li>{x}</li>' for x in s['incl'])
-    media=f'<div class="usluga-media"><img src="/assets/img/{s["img"]}" alt="{s["title"]} — Eners Group" loading="lazy"></div>' if s['img'] else ''
+    imgs=[s['img']]+([s['img2']] if s.get('img2') else [])
+    media=('<div class="usluga-media'+(' usluga-media-2' if len(imgs)>1 else '')+'">'+''.join(f'<img src="/assets/img/{im}" alt="{s["title"]} — Eners Group" loading="lazy">' for im in imgs)+'</div>') if s['img'] else ''
     cls="usluga"+("" if s['img'] else " no-media")+(" rev" if (s['img'] and i%2) else "")
     return f'''
   <section class="section{' soft' if i%2 else ''}" id="{s['k']}">
@@ -379,7 +388,7 @@ PAGES["proekty/index.html"]=dict(title="Проекты — Eners Group",
 <section class="stats-band"><div class="wrap">
   <div class="stat reveal"><b>100+ МВт</b><span>реализованной мощности</span></div>
   <div class="stat reveal"><b>30+</b><span>объектов под ключ</span></div>
-  <div class="stat reveal"><b>10+ лет</b><span>опыт команды</span></div>
+  <div class="stat reveal"><b>600+</b><span>специалистов ГК</span></div>
   <div class="stat reveal"><b>24/7</b><span>сервис и мониторинг</span></div>
 </div></section>''')
 
@@ -500,7 +509,7 @@ PAGES["energoservis.html"]=dict(title="Энергосервис (ЭСК) — Ene
 
 # ---- О КОМПАНИИ ----
 PAGES["o-kompanii.html"]=dict(title="О компании — Eners Group",
-  desc="ООО «ЭНЕРСГРУПП» — промышленная энергетика и инженерные системы под ключ: проектирование, строительство, эксплуатация и сервис. Офисы в Нижнем Новгороде и Миассе.",
+  desc="ООО «ЭНЕРСГРУПП» — промышленная энергетика и инженерные системы под ключ: проектирование, строительство, эксплуатация и сервис. В составе ГК «Спектр». Офисы в Нижнем Новгороде, Тольятти и Миассе.",
   active="company", body=f'''
 {CRUMB([("Главная","/"),("О компании",None)])}
 <section class="section page-head"><div class="wrap">
@@ -528,7 +537,7 @@ PAGES["o-kompanii.html"]=dict(title="О компании — Eners Group",
 <section class="stats-band"><div class="wrap">
   <div class="stat reveal"><b>100+ МВт</b><span>реализованной мощности</span></div>
   <div class="stat reveal"><b>30+</b><span>объектов под ключ</span></div>
-  <div class="stat reveal"><b>10+ лет</b><span>опыт команды</span></div>
+  <div class="stat reveal"><b>600+</b><span>специалистов ГК</span></div>
   <div class="stat reveal"><b>24/7</b><span>сервис и мониторинг</span></div>
 </div></section>
 <section class="section soft"><div class="wrap">
@@ -541,11 +550,12 @@ PAGES["o-kompanii.html"]=dict(title="О компании — Eners Group",
   </div>
 </div></section>
 <section class="section"><div class="wrap">
-  <div class="section-head reveal"><p class="eyebrow">Офисы</p><h2>Нижний Новгород и Миасс</h2></div>
+  <div class="section-head reveal"><p class="eyebrow">Офисы</p><h2>Нижний Новгород, Тольятти и Миасс</h2></div>
   <div class="grid g-3">
-    <div class="svc reveal"><h3>Нижний Новгород</h3><p>603016, ул. Героя Юрия Смирнова, д. 2<br>пр. Ленина, д. 88</p></div>
+    <div class="svc reveal"><h3>Нижний Новгород <span style="font-weight:600;color:var(--muted);font-size:14px">— основной</span></h3><p>603016, ул. Героя Юрия Смирнова, д. 2 (БЦ «Союз»)<br>пр. Ленина, д. 88</p></div>
+    <div class="svc reveal"><h3>Тольятти</h3><p>Самарская обл., г. Тольятти,<br>Южное шоссе, д. 163</p></div>
     <div class="svc reveal"><h3>Миасс</h3><p>456304, Челябинская обл.,<br>г. Миасс, пр. Автозаводцев, д. 1</p></div>
-    <div class="svc reveal"><h3>Реквизиты</h3><p>ООО «ЭНЕРСГРУПП»<br>ОГРН 1225200005722<br>ИНН 5256201227</p></div>
+    <div class="svc reveal"><h3>Реквизиты</h3><p>ООО «ЭНЕРСГРУПП» · входит в ГК «Спектр»<br>ОГРН 1225200005722<br>ИНН 5256201227 · КПП 525601001</p></div>
   </div>
 </div></section>
 <section class="section soft"><div class="wrap"><div class="cta reveal">

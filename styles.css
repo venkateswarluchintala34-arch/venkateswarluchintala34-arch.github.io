@@ -322,6 +322,8 @@ footer .logo span{color:#8ea4be}
 .usluga.no-media{grid-template-columns:1fr;max-width:900px}
 .usluga.rev .usluga-media{order:2}
 .usluga-media img{width:100%;aspect-ratio:16/11;object-fit:cover;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.usluga-media-2{display:flex;flex-direction:column;gap:16px}
+.usluga-media-2 img{aspect-ratio:16/12}
 .usluga-body .ic{width:56px;height:56px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:16px}
 .usluga-body .ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .usluga-body h2{font-size:clamp(24px,2.6vw,32px);color:var(--navy);margin:0 0 10px}
