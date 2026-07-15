@@ -423,3 +423,12 @@ footer .logo span{color:#8ea4be}
 .logo-cloud img:nth-child(7n){height:50px}
 .logo-cloud img:nth-child(8n){height:42px}
 @media(max-width:640px){.logo-cloud{gap:24px 32px}.logo-cloud img{height:34px!important;max-width:130px}}
+/* ---- Оборудование и системы: сетка значков ---- */
+.eqgrid-label{margin:34px 0 16px;font-size:15px;font-weight:600;color:var(--muted);text-align:center}
+.eqgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.eqi{display:flex;align-items:center;gap:13px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:14px;transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.eqi:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
+.eqi-ic{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.eqi-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.eqi>span:last-child{font-size:14px;font-weight:600;color:var(--navy);line-height:1.25}
+@media(max-width:640px){.eqgrid{grid-template-columns:1fr 1fr;gap:10px}.eqi{flex-direction:column;text-align:center;gap:8px;padding:14px 10px}.eqi>span:last-child{font-size:12.5px}}
