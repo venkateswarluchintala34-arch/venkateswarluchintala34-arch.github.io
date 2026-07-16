@@ -443,3 +443,18 @@ footer .logo span{color:#8ea4be}
 .eqb b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
 .eqb p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
 @media(max-width:640px){.eqbrands{grid-template-columns:1fr}}
+/* ---- Каталог-страницы направлений: таблицы моделей ---- */
+.usluga-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.catwrap{max-width:980px;margin:0 auto}
+.cat-h{color:var(--navy);font-size:21px;margin:0 0 8px}
+.cat-note{color:var(--muted);font-size:14.5px;line-height:1.55;margin:0 0 16px;max-width:78ch}
+.cat-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px}
+.cattable{width:100%;border-collapse:collapse;font-size:14.5px;min-width:600px;background:#fff}
+.cattable thead th{background:var(--navy);color:#fff;text-align:left;font-weight:700;font-size:12.5px;letter-spacing:.02em;padding:13px 16px;white-space:nowrap}
+.cattable td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--text);vertical-align:middle}
+.cattable tbody tr:last-child td{border-bottom:none}
+.cattable tbody tr:nth-child(even){background:#f6f9fe}
+.cattable tbody td:first-child{font-weight:700;color:var(--navy);white-space:nowrap}
+.cattable tbody td:nth-child(2){color:var(--accent-700);font-weight:700;white-space:nowrap}
+.catwrap .spec{max-width:520px;margin-top:22px}
+@media(max-width:640px){.catwrap .spec{max-width:none}}

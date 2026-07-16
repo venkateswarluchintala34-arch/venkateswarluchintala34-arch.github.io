@@ -63,10 +63,10 @@ FOOTER = '''
       </div>
       <div class="foot-col">
         <h4>Услуги</h4>
-        <a href="/uslugi/#energocentry">Энергоцентры · ГПЭС</a>
-        <a href="/uslugi/#kotelnye">Котельные</a>
-        <a href="/uslugi/#btp">Тепловые пункты</a>
-        <a href="/uslugi/#kompressornye">Компрессорные станции</a>
+        <a href="/uslugi/energocentry/">Энергоцентры · ГПЭС</a>
+        <a href="/uslugi/kotelnye/">Котельные</a>
+        <a href="/uslugi/btp/">Тепловые пункты</a>
+        <a href="/uslugi/kompressornye/">Компрессорные станции</a>
         <a href="/energoservis.html">Энергосервис</a>
       </div>
       <div class="foot-col">
@@ -407,9 +407,9 @@ def svc_icon(paths, kind):
 
 # ---- УСЛУГИ (обзор с якорями на каждое направление) ----
 svc_cards="".join(f'''
-      <a class="svc reveal" href="/uslugi/#{s['k']}">
+      <a class="svc reveal" href="/uslugi/{s['k']}/">
         <div class="ic">{svc_icon(s['p'],s['kind'])}</div>
-        <h3>{s['title']}</h3><p>{s['lead']}</p><span class="more">Подробнее</span>
+        <h3>{s['title']}</h3><p>{s['lead']}</p><span class="more">Каталог и характеристики</span>
       </a>''' for s in SERVICES)
 
 def svc_block(i, s):
@@ -430,7 +430,10 @@ def svc_block(i, s):
           <div><h4>Что входит</h4><ul>{incl}</ul></div>
           <div><h4>Где применяется</h4><p>{s['apply']}</p>{s['spec'] or ''}</div>
         </div>
-        <a class="btn btn-primary" href="/kontakty.html">Обсудить проект →</a>
+        <div class="usluga-actions">
+          <a class="btn btn-primary" href="/uslugi/{s['k']}/">Каталог и характеристики →</a>
+          <a class="btn btn-ghost" href="/kontakty.html">Обсудить проект</a>
+        </div>
       </div>
     </div>
   </section>'''
@@ -712,6 +715,105 @@ PAGES["politika.html"]=dict(title="Политика конфиденциальн
   <p>По вопросам обработки персональных данных: ООО «ЭНЕРСГРУПП», e-mail <a href="mailto:info@enersgroup.ru">info@enersgroup.ru</a>.</p>
   <p class="legal-note">Актуальная редакция Политики размещена на данной странице.</p>
 </div></section>''')
+
+
+# ---- КАТАЛОГ-СТРАНИЦЫ ПО НАПРАВЛЕНИЯМ (отдельная страница на направление) ----
+# Бренды — строго по согласованному Сусловым списку (переписка 16.07).
+CAT_BRANDS = {
+ "energocentry": ["Weichai (Baudouin)","Jichai (CNPC)","Yuchai"],
+ "kotelnye": ["ПГ «Гермес»","Завод паровых котлов","Энтророс","Термотехника","Дорогобужкотломаш","БиКЗ (Бийск)"],
+ "btp": ["ИТП и САР собственного производства"],
+ "kompressornye": ["DALGAKIRAN","Atlas Copco","Kaeser","Kaishan KOF","DENAIR DAW","Ремеза","ЧКЗ"],
+ "nasosnye": ["CNP","Wilo","Grundfos"],
+ "oborotnoe": ["SPX Marley","BAC","EWK","Kelvion","«Веза»"],
+ "ventilyaciya": ["АТМОСФЕРА","Systemair","«Веза»","Korf","Remak","Арктос","Daikin"],
+ "holodosnabzhenie": ["Carrier","Trane","York (JCI)","Daikin","Bitzer","«Остров»"],
+ "gazoluchistoe": ["Schwank","GoGaS","Kübler","Adrian","«Сибшванк»"],
+ "osveschenie": ["Световые Технологии","GALAD","Ledel","Navigator","Signify (Philips)"],
+ "askue": ["Инкотекс (Меркурий)","Энергомера","Тайпит (Нева)","«Матрица»","MasterSCADA","ОВЕН"],
+}
+# Модельные таблицы — только там, где есть реальные обозначения (ГПУ Jichai).
+CAT_MODELS = {
+ "energocentry": dict(
+   title="Модельный ряд Jichai · CNPC (серия GF-T)",
+   note="Газопоршневые генераторные установки на природном и попутном газе. Поставляются в контейнерном, открытом или блочном исполнении; объединяются в энергоцентр мощностью 0,2–40 МВт и выше. Расширенные характеристики (расход газа, тепловая мощность в когенерации, габариты) — в опросном листе под конкретный объект.",
+   head=["Модель","Эл. мощность","Напряжение / частота","Топливо","Исполнение"],
+   rows=[
+     ["Jichai 400 GF-T","400 кВт","400 В / 50 Гц","природный / попутный газ","контейнер · открытое"],
+     ["Jichai 450 GF-T","450 кВт","400 В / 50 Гц","природный / попутный газ","контейнер · открытое"],
+     ["Jichai 500 GF-T","500 кВт","400 В / 50 Гц","природный / попутный газ","контейнер · открытое"],
+     ["Jichai 750 GF-T","750 кВт","400 В / 50 Гц","природный / попутный газ","контейнер · открытое"],
+     ["Jichai 1100 GF-T","1100 кВт","400 В / 50 Гц","природный / попутный газ","контейнер · блочное"],
+     ["Jichai 1200 GF-T","1200 кВт","400 В / 50 Гц","природный / попутный газ","контейнер · блочное"],
+     ["Jichai 1500 GF-T","1500 кВт","400 / 6300 В · 50 Гц","природный / попутный газ","блочное · в здании"],
+     ["Jichai 2000 GF-T","2000 кВт","400 / 6300 В · 50 Гц","природный / попутный газ","блочное · в здании"],
+     ["Jichai 4000 GF10-T","4000 кВт","6300 / 10500 В · 50 Гц","природный / попутный газ","в здании"],
+   ],
+   extra='''<div class="spec"><h4>Линейка по производителям и мощности</h4>
+        <div class="spec-row"><b>Weichai · двигатели Baudouin</b><span>0,1–1,5 МВт</span></div>
+        <div class="spec-row"><b>Jichai · CNPC (GF-T)</b><span>0,4–4 МВт</span></div>
+        <div class="spec-row"><b>Yuchai</b><span>по проекту</span></div>
+        <div class="spec-row"><b>Энергоцентр (несколько ГПУ)</b><span>0,2–40 МВт и выше</span></div></div>'''),
+}
+
+def cat_table(m):
+    head="".join(f'<th>{h}</th>' for h in m['head'])
+    body="".join('<tr>'+"".join(f'<td>{c}</td>' for c in r)+'</tr>' for r in m['rows'])
+    note=f'<p class="cat-note">{m["note"]}</p>' if m.get('note') else ''
+    extra=m.get('extra','')
+    return f'''<h3 class="cat-h">{m['title']}</h3>{note}
+      <div class="cat-scroll"><table class="cattable"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>
+      {extra}'''
+
+def catalog_body(s):
+    k=s['k']
+    incl="".join(f'<li>{x}</li>' for x in s['incl'])
+    media=(f'<div class="usluga-media"><img src="/assets/img/{s["img"]}" alt="{s["title"]} — Eners Group" loading="lazy"></div>') if s['img'] else ''
+    cls="usluga"+("" if s['img'] else " no-media")
+    m=CAT_MODELS.get(k)
+    spec_inline='' if m else (s['spec'] or '')
+    model_html=(f'''
+<section class="section soft"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">Модельный ряд</p><h2>Модели и характеристики</h2></div>
+  <div class="catwrap reveal">{cat_table(m)}</div>
+</div></section>''') if m else ''
+    brands=CAT_BRANDS.get(k)
+    brand_html=(f'''
+<section class="section{'' if m else ' soft'}"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">Оборудование</p><h2>Бренды и производители</h2>
+    <p>Подбираем оборудение под задачу, режим работы и бюджет — из проверенных линеек. Возможны аналоги и импортозамещающие решения.</p></div>
+  <div class="equip reveal">{"".join(f'<span class="chip">{b}</span>' for b in brands)}</div>
+</div></section>''') if brands else ''
+    return f'''
+{CRUMB([("Главная","/"),("Услуги","/uslugi/"),(s['title'],None)])}
+<section class="section page-head"><div class="wrap">
+  <p class="eyebrow">Каталог направления</p>
+  <h1 class="page-title">{s.get('h2') or s['title']}</h1>
+  <p class="page-lead">{s['lead']}</p>
+</div></section>
+<section class="section" style="padding-top:0"><div class="wrap {cls}">
+  {media}
+  <div class="usluga-body reveal">
+    <div class="ic">{svc_icon(s['p'],s['kind'])}</div>
+    <p class="usluga-lead">{s['lead']}</p>
+    <p>{s['body']}</p>
+    <div class="usluga-cols">
+      <div><h4>Что входит</h4><ul>{incl}</ul></div>
+      <div><h4>Где применяется</h4><p>{s['apply']}</p>{spec_inline}</div>
+    </div>
+  </div>
+</div></section>
+{model_html}
+{brand_html}
+<section class="section{' soft' if not brands else ''}"><div class="wrap"><div class="cta reveal">
+  <h2>Подобрать решение под ваш объект</h2><p>Пришлите нагрузки, режим работы и требования — подготовим технико-коммерческое предложение с составом оборудования и характеристиками.</p>
+  <a class="btn btn-primary btn-lg" href="/kontakty.html">Запросить подбор →</a></div></div></section>'''
+
+for s in SERVICES:
+    PAGES[f"uslugi/{s['k']}/index.html"]=dict(
+      title=f"{s['title']} — каталог и характеристики — Eners Group",
+      desc=f"{s['lead']} {s['apply']}"[:300],
+      active="uslugi", body=catalog_body(s))
 
 
 def build():
