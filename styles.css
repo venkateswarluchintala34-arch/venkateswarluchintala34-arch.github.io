@@ -432,3 +432,11 @@ footer .logo span{color:#8ea4be}
 .eqi-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .eqi>span:last-child{font-size:14px;font-weight:600;color:var(--navy);line-height:1.25}
 @media(max-width:640px){.eqgrid{grid-template-columns:1fr 1fr;gap:10px}.eqi{flex-direction:column;text-align:center;gap:8px;padding:14px 10px}.eqi>span:last-child{font-size:12.5px}}
+/* ---- Оборудование по направлениям с брендами ---- */
+.eqbrands{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+.eqb{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:14px;transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.eqb:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
+.eqb .eqi-ic{flex:0 0 auto}
+.eqb b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
+.eqb p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
+@media(max-width:640px){.eqbrands{grid-template-columns:1fr}}
